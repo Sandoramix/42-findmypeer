@@ -24,9 +24,14 @@ app.options("*", cors);
 app.use('/peers', (req, res)=>{
 	const rawData = FS.readFileSync(`/tmp/who.cache`, 'utf8');
 	const users = rawData.split('\n').map(u=>{
-		const [username, position] = u.split(` - `);
-		return {username, position};
-	}).filter(u=> u.username && u.position)
+		const [username, raw] = u.split(` - `);
+		if (!username || !raw)
+			return (null);
+		const cluster = parseInt(raw.split('c')[1]);
+		const row = parseInt(raw.split('r')[1]);
+		const pc = parseInt(raw.split('p')[1]);
+		return {username, position:{raw,cluster,row,pc}};
+	}).filter(u=> u && u.username && u.position)
 
 	res.status(200);
 	res.json(users);

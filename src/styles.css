@@ -18,8 +18,12 @@ body{
 }
 
 *::-webkit-scrollbar-thumb{
-	@apply bg-neutral-200  rounded-sm
+	@apply bg-neutral-100  rounded-sm
 }
 *::-webkit-scrollbar{
-	@apply w-1.5 bg-slate-800
+	@apply w-1.5 h-1.5 bg-neutral-950
+}
+
+#tab-clusters td:nth-child(even) img{
+	@apply rotate-180
 }

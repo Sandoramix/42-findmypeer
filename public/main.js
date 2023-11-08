@@ -60,7 +60,7 @@ function updateLoading(isLoading){
 function fetchPeers(){
 	// TODO REPLACE TO: document.baseURI
 	updateLoading(true);
-	fetch(`http://localhost:8080/peers`, {method:'GET'}).then(res=>res.json()).then(peers=>{
+	fetch(`${document.baseURI}peers`, {method:'GET'}).then(res=>res.json()).then(peers=>{
 		data = peers;
 		updateLoading(false);
 		updateTable();

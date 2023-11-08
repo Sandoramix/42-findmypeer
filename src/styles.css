@@ -1,0 +1,25 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root{
+	--body-height: 100vh;
+	--body-height: 100dvh;
+}
+
+* {
+	box-sizing: border-box;
+	padding: 0;
+	margin: 0;
+}
+
+body{
+	height: var(--body-height);
+}
+
+*::-webkit-scrollbar-thumb{
+	@apply bg-neutral-200  rounded-sm
+}
+*::-webkit-scrollbar{
+	@apply w-1.5 bg-slate-800
+}

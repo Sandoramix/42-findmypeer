@@ -25,9 +25,10 @@ app.use(cors);
 app.options("*", cors);
 
 app.use('/peers', (req, res)=>{
-	const rawData = FS.readFileSync(`/tmp/who.cache`, 'utf8');
+	const rawData = FS.readFileSync(`/nfs/sgoinfre/goinfre/Perso/who.cache`, 'utf8');
 	const users = rawData.split('\n').map(u=>{
-		const [username, raw] = u.split(` - `);
+		const [username] = u.split(` - `);
+		const raw = u.split(` - `).at(-1);
 		if (!username || !raw)
 			return (null);
 		const cluster = parseInt(raw.split('c')[1]);

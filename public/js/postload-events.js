@@ -16,8 +16,9 @@ TABS_BUTTONS.forEach((el, idx) => {
 		});
 	});
 	const hash = location.hash.replace(/^#/, "");
+	const included = !![...TABS_BUTTONS].find(el => el.getAttribute(`data-selectedtab`)=== hash)
 	const tabSection = document.getElementById(`tab-${elAttr}`);
-	if (hash != elAttr && !(hash == '' && idx == 0))
+	if (hash != elAttr && !(!included && idx == 0))
 		tabSection.style.display = `none`;
 	else {
 		tabSection.style.display = `flex`;

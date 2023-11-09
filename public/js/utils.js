@@ -15,6 +15,10 @@ function updateRefetchTime(endTms) {
 	}
 }
 
+function getIntraProfileLink(username){
+	return `https://profile.intra.42.fr/users/${username}`
+}
+
 function isSearchIncluded(string){
 	const text = SEARCH_INPUT.value.toLowerCase();
 	if (text == '')

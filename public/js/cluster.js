@@ -7,18 +7,32 @@ function updateCluster(){
 		rows.forEach((cRow, cRowIdx)=>{
 			const pcs = cRow.querySelectorAll(`.pc`);
 			pcs.forEach((crPc, crPcIdx)=>{
-				const user = findUserByPosition(clusterIdx + 1, rows.length - cRowIdx, crPcIdx + 1);
-				const text = crPc.querySelector(`p`);
-				text.innerHTML = user ? user.username : `n/a`;
-				if (!user)
-					return;
-				if (isSearchIncluded(user.username) || isSearchIncluded(user.position.raw)){
-					text.classList.toggle(`!text-amber-400`, true);
-					text.classList.toggle(`!font-medium`, true);
-				}else{
-					text.classList.toggle(`!text-amber-400`, false);
-					text.classList.toggle(`!font-medium`, false);
+				const [cluster, row, pc] = [clusterIdx + 1, rows.length - cRowIdx, crPcIdx + 1];
+				const user = findUserByPosition(cluster, row, pc);
+				const userLink = crPc.querySelector(`a`);
+
+				userLink.textContent = `n/a`;
+				userLink.href = ``
+
+				userLink.classList.toggle(`text-neutral-600`, false);
+				userLink.classList.toggle(`!text-amber-400`, false);
+				// userLink.classList.toggle(`!font-medium`, false);
+				if (user && isSearchIncluded(user.username) || isSearchIncluded(`c${cluster}r${row}p${pc}`)){
+					userLink.classList.toggle(`!text-amber-400`, true);
+					// userLink.classList.toggle(`!font-medium`, true);
 				}
+
+				if (!user){
+					userLink.classList.add('disabled');
+					userLink.classList.toggle(`text-neutral-600`, true);
+					return;
+				}
+				userLink.classList.remove('disabled');
+				userLink.textContent = user.username;
+				userLink.href = `https://profile.intra.42.fr/users/${user.username}`
+				userLink.target = '_black';
+				userLink.referrerPolicy = 'noreferrer'
+
 			})
 		})
 	})

@@ -631,10 +631,6 @@ video {
   height: var(--body-height);
 }
 
-.max-h-\[600px\] {
-  max-height: 600px;
-}
-
 .w-11\/12 {
   width: 91.666667%;
 }
@@ -659,11 +655,6 @@ video {
   width: 100%;
 }
 
-.w-min {
-  width: -moz-min-content;
-  width: min-content;
-}
-
 .w-screen {
   width: 100vw;
 }
@@ -674,10 +665,6 @@ video {
 
 .max-w-6xl {
   max-width: 72rem;
-}
-
-.max-w-7xl {
-  max-width: 80rem;
 }
 
 .max-w-\[8ch\] {
@@ -891,6 +878,10 @@ video {
   font-size: 0.4rem;
 }
 
+.\!font-medium {
+  font-weight: 500 !important;
+}
+
 .font-bold {
   font-weight: 700;
 }
@@ -907,25 +898,13 @@ video {
   font-weight: 600;
 }
 
-.\!font-bold {
-  font-weight: 700 !important;
-}
-
-.\!font-semibold {
-  font-weight: 600 !important;
-}
-
-.\!font-medium {
-  font-weight: 500 !important;
-}
-
 .uppercase {
   text-transform: uppercase;
 }
 
-.\!text-cyan-600 {
+.\!text-amber-400 {
   --tw-text-opacity: 1 !important;
-  color: rgb(8 145 178 / var(--tw-text-opacity)) !important;
+  color: rgb(251 191 36 / var(--tw-text-opacity)) !important;
 }
 
 .\!text-yellow-500 {
@@ -933,14 +912,14 @@ video {
   color: rgb(234 179 8 / var(--tw-text-opacity)) !important;
 }
 
-.text-cyan-600 {
-  --tw-text-opacity: 1;
-  color: rgb(8 145 178 / var(--tw-text-opacity));
-}
-
 .text-neutral-100 {
   --tw-text-opacity: 1;
   color: rgb(245 245 245 / var(--tw-text-opacity));
+}
+
+.text-neutral-600 {
+  --tw-text-opacity: 1;
+  color: rgb(82 82 82 / var(--tw-text-opacity));
 }
 
 .text-neutral-800 {
@@ -956,21 +935,6 @@ video {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
-}
-
-.\!text-cyan-500 {
-  --tw-text-opacity: 1 !important;
-  color: rgb(6 182 212 / var(--tw-text-opacity)) !important;
-}
-
-.\!text-amber-500 {
-  --tw-text-opacity: 1 !important;
-  color: rgb(245 158 11 / var(--tw-text-opacity)) !important;
-}
-
-.\!text-amber-400 {
-  --tw-text-opacity: 1 !important;
-  color: rgb(251 191 36 / var(--tw-text-opacity)) !important;
 }
 
 .outline-none {
@@ -1030,6 +994,34 @@ body{
   #tab-table, #tab-clusters {
     overflow-y: auto;
   }
+}
+
+a.disabled{
+  pointer-events: none;
+}
+
+/* HARDCODED ENTRANCE */
+
+#tab-clusters fieldset:first-of-type tbody tr:last-child .pc:nth-child(4)::after{
+  content: "|Entrance|";
+  bottom: -1.25rem;
+  left: 50%;
+  --tw-translate-x: -50%;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  font-weight: 700;
+  --tw-text-opacity: 1;
+  color: rgb(212 212 212 / var(--tw-text-opacity))
+}
+
+#tab-clusters fieldset:last-of-type tbody tr:first-child td:first::before{
+  content: "Entrance";
+  position: absolute;
+  bottom: -1.25rem;
+  left: 50%;
+  --tw-translate-x: -50%;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+  font-weight: 700;
+  text-decoration-line: underline
 }
 
 .hover\:text-yellow-200:hover {

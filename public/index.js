@@ -3,7 +3,8 @@ function updateElements(){
 	updateCluster();
 }
 
-SEARCH_INPUT.value = 'ev'
+// TODO REMOVE ME
+// SEARCH_INPUT.value = 'od'
 SEARCH_INPUT.addEventListener('keyup', (ev) => {
 	clearTimeout(searchDebounceTimeout);
 	searchDebounceTimeout = setTimeout(updateElements, 333);

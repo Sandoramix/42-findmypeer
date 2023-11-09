@@ -5,7 +5,7 @@ const TABLE = document.getElementById(`table`);
  */
 function updateTable() {
 	const search = SEARCH_INPUT.value.toLowerCase();
-	const filtered = usersData.filter(user => isSearchIncluded(user.username) || isSearchIncluded(user.position.raw)).sort((a, b) => a.username.localeCompare(b.username));
+	const filtered = usersData.filter(user => isSearchIncluded(user.username) || isSearchIncluded(user.position.raw) || search == '').sort((a, b) => a.username.localeCompare(b.username));
 	const tableBody = TABLE.querySelector(`tbody`);
 
 	if (search == "" || search) {
@@ -22,7 +22,7 @@ function updateTable() {
 			userRow.className = `border border-white/10`;
 		}
 		userRow.innerHTML = `<td class="border border-white/10 h-10">
-			<div class="flex justify-center items-center">${u.username}</div>
+			<a class="flex justify-center items-center" href="${getIntraProfileLink(u.username)}" target="_blank" referrer="no-referrer">${u.username}</a>
 		</td>
 		<td class="border border-white/10 h-10">
 			<div class="flex justify-center items-center">${u.position.raw}</div>

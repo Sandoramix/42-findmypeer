@@ -2,7 +2,8 @@ const SEARCH_INPUT = document.getElementById(`search`);
 const FORM = document.getElementById(`search-form`);
 const TABLE = document.getElementById(`table`);
 const LOADING_SPINNER = document.getElementById(`loading`);
-
+const REFETCH_CNT = document.getElementById(`refetch-cnt`)
+const REFETCH_TIME = document.getElementById(`refetch-time`)
 
 
 var searchDebounceTimeout;
@@ -88,6 +89,22 @@ TABS_BUTTONS.forEach((el, idx) => {
 		el.classList.toggle(`!text-yellow-500`, true);
 });
 
+
+var refetchTimeout
+function updateRefetchTime(endTms){
+
+	const timeLeft = Math.floor((endTms - Date.now()) / 1000);
+	if (timeLeft < 0 )
+		REFETCH_CNT.style.display = `none`;
+	else {
+		REFETCH_CNT.style.display = `block`;
+		REFETCH_TIME.innerHTML = timeLeft;
+
+		clearTimeout(refetchTimeout);
+		refetchTimeout = setTimeout(()=>updateRefetchTime(endTms), 1000);
+	}
+}
+
 function fetchPeers() {
 	// TODO REPLACE TO: document.baseURI
 	updateLoading(true);
@@ -97,8 +114,10 @@ function fetchPeers() {
 
 		updateLoading(false);
 		updateTable();
-		const now = Date.now()
+		updateRefetchTime(refreshAt);
+		const now = Date.now();
 		setTimeout(fetchPeers, refreshAt - now > 0 ? refreshAt - now : (1000 * 60) - date.getSeconds());
 	});
 }
 fetchPeers();
+

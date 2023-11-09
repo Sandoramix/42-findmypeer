@@ -570,6 +570,11 @@ video {
   z-index: 50;
 }
 
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .block {
   display: block;
 }
@@ -638,6 +643,14 @@ video {
   width: 6rem;
 }
 
+.w-3 {
+  width: 0.75rem;
+}
+
+.w-4 {
+  width: 1rem;
+}
+
 .w-5 {
   width: 1.25rem;
 }
@@ -667,8 +680,8 @@ video {
   max-width: 80rem;
 }
 
-.max-w-\[20px\] {
-  max-width: 20px;
+.max-w-\[8ch\] {
+  max-width: 8ch;
 }
 
 .shrink-0 {
@@ -703,6 +716,10 @@ video {
 
 .flex-col {
   flex-direction: column;
+}
+
+.flex-nowrap {
+  flex-wrap: nowrap;
 }
 
 .items-start {
@@ -874,6 +891,10 @@ video {
   line-height: 1rem;
 }
 
+.text-xxxs {
+  font-size: 0.4rem;
+}
+
 .font-bold {
   font-weight: 700;
 }
@@ -983,6 +1004,33 @@ body{
   .xs\:table-cell {
     display: table-cell;
   }
+
+  .xs\:w-7 {
+    width: 1.75rem;
+  }
+
+  .xs\:text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+}
+
+@media (min-width: 560px) {
+  .xs-sm\:h-7 {
+    height: 1.75rem;
+  }
+
+  .xs-sm\:w-7 {
+    width: 1.75rem;
+  }
+
+  .xs-sm\:text-xxs {
+    font-size: 0.6rem;
+  }
+
+  .xs-sm\:text-xxxm {
+    font-size: .5rem;
+  }
 }
 
 @media (min-width: 640px) {
@@ -998,16 +1046,28 @@ body{
     width: 2.5rem;
   }
 
+  .sm\:w-8 {
+    width: 2rem;
+  }
+
   .sm\:w-full {
     width: 100%;
   }
 
-  .sm\:max-w-\[40px\] {
-    max-width: 40px;
+  .sm\:flex-row {
+    flex-direction: row;
   }
 
   .sm\:items-start {
     align-items: flex-start;
+  }
+
+  .sm\:items-center {
+    align-items: center;
+  }
+
+  .sm\:justify-center {
+    justify-content: center;
   }
 
   .sm\:py-3 {
@@ -1022,6 +1082,18 @@ body{
   .sm\:text-base {
     font-size: 1rem;
     line-height: 1.5rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .md\:text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+
+  .md\:text-xs {
+    font-size: 0.75rem;
+    line-height: 1rem;
   }
 }
 
@@ -1044,6 +1116,18 @@ body{
 
   .xl\:flex-row {
     flex-direction: row;
+  }
+
+  .xl\:items-start {
+    align-items: flex-start;
+  }
+
+  .xl\:items-center {
+    align-items: center;
+  }
+
+  .xl\:justify-center {
+    justify-content: center;
   }
 
   .xl\:justify-between {
@@ -1079,6 +1163,18 @@ body{
   }
 
   .xl\:text-base {
+    font-size: 1rem;
+    line-height: 1.5rem;
+  }
+
+  .xl\:text-sm {
+    font-size: 0.875rem;
+    line-height: 1.25rem;
+  }
+}
+
+@media (min-width: 1536px) {
+  .\32xl\:text-base {
     font-size: 1rem;
     line-height: 1.5rem;
   }

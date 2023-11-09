@@ -29,6 +29,10 @@ body{
 	@apply rotate-180
 }
 
+#tab-clusters td:first-child{
+	/* @apply items-start pb-5 */
+}
+
 
 @media (max-width: 1280px){
 	#tab-table, #tab-clusters{

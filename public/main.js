@@ -7,7 +7,7 @@ const LOADING_SPINNER = document.getElementById(`loading`);
 
 var searchDebounceTimeout;
 
-var data = [];
+var usersData = [];
 
 
 SEARCH_INPUT.addEventListener('keyup', (ev) => {
@@ -26,7 +26,7 @@ FORM.addEventListener(`submit`, (ev) => {
  */
 function updateTable() {
 	const search = SEARCH_INPUT.value.toLowerCase();
-	const filtered = data.filter(x => x.username.includes(search) || x.position.raw.includes(search)).sort((a, b) => a.username.localeCompare(b.username));
+	const filtered = usersData.filter(x => x.username.includes(search) || x.position.raw.includes(search)).sort((a, b) => a.username.localeCompare(b.username));
 	const tableBody = TABLE.querySelector(`tbody`);
 
 	if (search == "" || search) {
@@ -91,12 +91,14 @@ TABS_BUTTONS.forEach((el, idx) => {
 function fetchPeers() {
 	// TODO REPLACE TO: document.baseURI
 	updateLoading(true);
-	fetch(`http://localhost:8080/peers`, { method: 'GET' }).then(res => res.json()).then(peers => {
-		data = peers;
+	fetch(`http://localhost:8080/peers`, { method: 'GET' }).then(res => res.json()).then(data => {
+		const {users, refreshAt } = data;
+		usersData = users;
+
 		updateLoading(false);
 		updateTable();
+		const now = Date.now()
+		setTimeout(fetchPeers, refreshAt - now > 0 ? refreshAt - now : (1000 * 60) - date.getSeconds());
 	});
-	const date = new Date();
-	setTimeout((1000 * 60) - date.getSeconds());
 }
 fetchPeers();

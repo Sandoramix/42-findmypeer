@@ -12,6 +12,9 @@ const env = {
 	},
 	https:{
 		port: 8443
+	},
+	api:{
+		refreshSeconds: 60
 	}
 }
 
@@ -31,10 +34,15 @@ app.use('/peers', (req, res)=>{
 		const row = parseInt(raw.split('r')[1]);
 		const pc = parseInt(raw.split('p')[1]);
 		return {username, position:{raw,cluster,row,pc}};
-	}).filter(u=> u && u.username && u.position)
+	}).filter(u=> u && u.username && u.position);
 
 	res.status(200);
-	res.json(users);
+	const nowD = new Date();
+	const nowTms = Date.now();
+	res.json({
+		users,
+		refreshAt: nowTms - (nowD.getSeconds() * 1000) + (env.api.refreshSeconds * 1000)
+	});
 })
 
 app.use(EXPRESS.static(`public`))

@@ -11,6 +11,7 @@
 	box-sizing: border-box;
 	padding: 0;
 	margin: 0;
+	scroll-behavior: smooth;
 }
 
 body{
@@ -26,4 +27,11 @@ body{
 
 #tab-clusters .pc:nth-child(even) img{
 	@apply rotate-180
+}
+
+
+@media (max-width: 1280px){
+	#tab-table, #tab-clusters{
+		@apply overflow-y-auto
+	}
 }

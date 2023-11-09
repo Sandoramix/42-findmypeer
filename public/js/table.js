@@ -28,7 +28,7 @@ function updateTable() {
 			<div class="flex justify-center items-center">${u.position.raw}</div>
 		</td>
 		<td class="hidden sm:table-cell border border-white/10 h-10">
-			<div class="flex justify-center items-center">${CLUSTER[u.position.cluster]}</div>
+			<div class="flex justify-center items-center">${CLUSTER_DISPOSAL[u.position.cluster].name}</div>
 		</td>
 		<td class="hidden xs:table-cell border border-white/10 h-10">
 			<div class="flex justify-center items-center">${u.position.row}</div>

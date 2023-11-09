@@ -25,6 +25,10 @@ body{
 	@apply w-1.5 h-1.5 bg-neutral-950
 }
 
+/* #tab-clusters .pc:nth-child(even) {
+	@apply flex-col-reverse
+} */
+
 #tab-clusters .pc:nth-child(even) img{
 	@apply rotate-180
 }

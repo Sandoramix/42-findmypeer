@@ -22,18 +22,20 @@
 		</div>
 	</header>
 
-	<main id="main" class="relative flex flex-col items-center w-full overflow-x-hidden overflow-y-hidden xl:justify-between xl:overflow-y-auto xl:w-auto xl:flex-row grow">
-		<aside class="items-center hidden min-w-[20ch] h-12 px-4 py-3 xl:sticky top-0 left-0 xl:flex border-t shrink-1 border-neutral-700/40">
+	<main id="main" class="relative flex flex-col items-center w-full overflow-x-hidden overflow-y-hidden sm:items-start xl:justify-between xl:overflow-y-auto xl:w-auto xl:flex-row grow">
+		<aside class="hidden min-w-[20ch] h-12 px-4 py-3 xl:sticky top-0 left-0 xl:flex shrink-1">
 			<h3 class="hidden font-mono text-sm font-semibold refetch-cnt">Refetch in&nbsp;<span class="refetch-time">0</span>s</h3>
 		</aside>
-		<section id="tab-table" class="flex flex-col w-11/12 max-w-6xl text-xl sm:w-full xl:overscroll-y-contain grow">
-			<div class="relative flex items-start justify-start w-full px-4 py-3 grow">
+		<section id="tab-table" style="display: none;" class="flex flex-col w-full max-w-6xl px-4 pb-1 text-xl sm:pb-3 xl:overscroll-y-contain grow">
+			<div class="relative flex items-start justify-start w-full grow">
 				<table id="table" class="w-full border border-white/20 border-collapse max-h-[600px] overflow-y-auto">
 					<thead>
 						<tr class="sticky top-0 left-0 bg-zinc-900">
 							<th class="px-3 py-1 border border-white/10">Username</th>
 							<th class="px-3 py-1 border border-white/10">Position</th>
-							<th class="px-3 py-1 border border-white/10">Cluster</th>
+							<th class="hidden px-3 py-1 border sm:table-cell border-white/10">Cluster</th>
+							<th class="hidden px-3 py-1 border xs:table-cell border-white/10">Row</th>
+							<th class="hidden px-3 py-1 border xs:table-cell border-white/10">Pc</th>
 						</tr>
 					</thead>
 					<tbody>
@@ -41,19 +43,11 @@
 				</table>
 
 			</div>
-
-			<div class="fixed z-50 flex items-center justify-center w-full h-full overflow-hidden backdrop-brightness-50" id="loading" role="status">
-				<svg aria-hidden="true" class="w-24 h-24 text-neutral-800 animate-spin fill-cyan-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
-					<path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
-					<path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
-				</svg>
-				<span class="sr-only">Loading...</span>
-			</div>
 		</section>
 
-		<section id="tab-clusters" class="flex flex-col w-11/12 gap-3 text-xs sm:w-full xl:text-base max-w-7xl grow ">
+		<section style="display: none;" id="tab-clusters" class="flex flex-col w-11/12 gap-3 py-1 text-xs sm:py-3 sm:w-full xl:text-base max-w-7xl grow ">
 			<h4 class="sticky top-0 left-0 z-50 px-4 py-2 text-3xl font-bold text-red-500 bg-black w-min rounded-xl ">WIP</h4>
-			<fieldset class="p-1 border rounded shrink-0 border-white/10 xl:p-4">
+			<fieldset class="p-1 border-t border-b xl:border xl:rounded shrink-0 border-white/10 xl:p-4">
 				<legend class="font-bold">Cluster 1 | Wakanda</legend>
 				<table class="w-full grow">
 					<thead>
@@ -174,7 +168,7 @@
 					</tbody>
 				</table>
 			</fieldset>
-			<fieldset class="p-1 border rounded shrink-0 border-white/10 xl:p-4">
+			<fieldset class="p-1 border-t xl:border xl:rounded shrink-0 border-white/10 xl:p-4">
 				<legend class="font-bold">Cluster 2 | Nidavellir</legend>
 				<table class="w-full grow">
 					<thead>
@@ -311,10 +305,18 @@
 			</fieldset>
 		</section>
 
-		<footer class="flex items-center w-full xl:w-auto sm:min-w-[20ch] h-12 px-4 py-3 border-t shrink-0 border-neutral-700/40">
-			<h3 class="flex font-mono text-sm font-semibold refetch-cnt xl:hidden">Refetch in&nbsp;<span class="refetch-time">0</span>s</h3>
+		<footer class="flex items-center w-full xl:w-auto min-w-[20ch] h-12 px-4 py-3 border-t xl:border-none xl:p-0 shrink-0 border-neutral-700/40">
+			<h3 class="flex items-center font-mono text-sm font-semibold refetch-cnt xl:!hidden">Refetch in&nbsp;<span class="refetch-time">0</span>s</h3>
 		</footer>
 	</main>
+
+	<div class="fixed z-50 flex items-center justify-center w-screen overflow-hidden h-myscreen backdrop-brightness-50" id="loading" role="status">
+		<svg aria-hidden="true" class="w-24 h-24 text-neutral-800 animate-spin fill-cyan-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<path d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z" fill="currentColor"/>
+			<path d="M93.9676 39.0409C96.393 38.4038 97.8624 35.9116 97.0079 33.5539C95.2932 28.8227 92.871 24.3692 89.8167 20.348C85.8452 15.1192 80.8826 10.7238 75.2124 7.41289C69.5422 4.10194 63.2754 1.94025 56.7698 1.05124C51.7666 0.367541 46.6976 0.446843 41.7345 1.27873C39.2613 1.69328 37.813 4.19778 38.4501 6.62326C39.0873 9.04874 41.5694 10.4717 44.0505 10.1071C47.8511 9.54855 51.7191 9.52689 55.5402 10.0491C60.8642 10.7766 65.9928 12.5457 70.6331 15.2552C75.2735 17.9648 79.3347 21.5619 82.5849 25.841C84.9175 28.9121 86.7997 32.2913 88.1811 35.8758C89.083 38.2158 91.5421 39.6781 93.9676 39.0409Z" fill="currentFill"/>
+		</svg>
+		<span class="sr-only">Loading...</span>
+	</div>
 	<script src="constants.js"></script>
 	<script src="main.js"></script>
 </body>

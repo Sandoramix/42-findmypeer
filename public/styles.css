@@ -614,16 +614,24 @@ video {
   height: 6rem;
 }
 
-.h-full {
-  height: 100%;
-}
-
 .h-5 {
   height: 1.25rem;
 }
 
+.h-full {
+  height: 100%;
+}
+
+.h-myscreen {
+  height: var(--body-height);
+}
+
 .max-h-\[600px\] {
   max-height: 600px;
+}
+
+.w-11\/12 {
+  width: 91.666667%;
 }
 
 .w-24 {
@@ -638,13 +646,13 @@ video {
   width: 100%;
 }
 
-.w-11\/12 {
-  width: 91.666667%;
-}
-
 .w-min {
   width: -moz-min-content;
   width: min-content;
+}
+
+.w-screen {
+  width: 100vw;
 }
 
 .min-w-\[20ch\] {
@@ -737,10 +745,6 @@ video {
   text-overflow: ellipsis;
 }
 
-.rounded {
-  border-radius: 0.25rem;
-}
-
 .rounded-xl {
   border-radius: 0.75rem;
 }
@@ -773,6 +777,11 @@ video {
   border-color: rgb(255 255 255 / 0.2);
 }
 
+.bg-black {
+  --tw-bg-opacity: 1;
+  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+}
+
 .bg-black\/20 {
   background-color: rgb(0 0 0 / 0.2);
 }
@@ -793,11 +802,6 @@ video {
 .bg-zinc-900 {
   --tw-bg-opacity: 1;
   background-color: rgb(24 24 27 / var(--tw-bg-opacity));
-}
-
-.bg-black {
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
 }
 
 .fill-cyan-600 {
@@ -828,14 +832,18 @@ video {
   padding-bottom: 0.25rem;
 }
 
+.py-2 {
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+}
+
 .py-3 {
   padding-top: 0.75rem;
   padding-bottom: 0.75rem;
 }
 
-.py-2 {
-  padding-top: 0.5rem;
-  padding-bottom: 0.5rem;
+.pb-1 {
+  padding-bottom: 0.25rem;
 }
 
 .text-center {
@@ -846,9 +854,9 @@ video {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
-.text-4xl {
-  font-size: 2.25rem;
-  line-height: 2.5rem;
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
 }
 
 .text-sm {
@@ -864,16 +872,6 @@ video {
 .text-xs {
   font-size: 0.75rem;
   line-height: 1rem;
-}
-
-.text-6xl {
-  font-size: 3.75rem;
-  line-height: 1;
-}
-
-.text-3xl {
-  font-size: 1.875rem;
-  line-height: 2.25rem;
 }
 
 .font-bold {
@@ -981,7 +979,17 @@ body{
   color: rgb(254 240 138 / var(--tw-text-opacity));
 }
 
+@media (min-width: 400px) {
+  .xs\:table-cell {
+    display: table-cell;
+  }
+}
+
 @media (min-width: 640px) {
+  .sm\:table-cell {
+    display: table-cell;
+  }
+
   .sm\:h-10 {
     height: 2.5rem;
   }
@@ -994,17 +1002,21 @@ body{
     width: 100%;
   }
 
-  .sm\:min-w-\[20ch\] {
-    min-width: 20ch;
-  }
-
   .sm\:max-w-\[40px\] {
     max-width: 40px;
   }
 
-  .sm\:text-xl {
-    font-size: 1.25rem;
-    line-height: 1.75rem;
+  .sm\:items-start {
+    align-items: flex-start;
+  }
+
+  .sm\:py-3 {
+    padding-top: 0.75rem;
+    padding-bottom: 0.75rem;
+  }
+
+  .sm\:pb-3 {
+    padding-bottom: 0.75rem;
   }
 
   .sm\:text-base {
@@ -1022,8 +1034,8 @@ body{
     display: flex;
   }
 
-  .xl\:hidden {
-    display: none;
+  .xl\:\!hidden {
+    display: none !important;
   }
 
   .xl\:w-auto {
@@ -1044,6 +1056,22 @@ body{
 
   .xl\:overscroll-y-contain {
     overscroll-behavior-y: contain;
+  }
+
+  .xl\:rounded {
+    border-radius: 0.25rem;
+  }
+
+  .xl\:border {
+    border-width: 1px;
+  }
+
+  .xl\:border-none {
+    border-style: none;
+  }
+
+  .xl\:p-0 {
+    padding: 0px;
   }
 
   .xl\:p-4 {

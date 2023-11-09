@@ -2,8 +2,8 @@ const SEARCH_INPUT = document.getElementById(`search`);
 const FORM = document.getElementById(`search-form`);
 const TABLE = document.getElementById(`table`);
 const LOADING_SPINNER = document.getElementById(`loading`);
-const REFETCH_CNTS = document.querySelectorAll(`.refetch-cnt`)
-const REFETCH_TIMES = document.querySelectorAll(`.refetch-time`)
+const REFETCH_CNTS = document.querySelectorAll(`.refetch-cnt`);
+const REFETCH_TIMES = document.querySelectorAll(`.refetch-time`);
 
 
 var searchDebounceTimeout;
@@ -49,8 +49,14 @@ function updateTable() {
 		<td class="border border-white/10 h-10">
 			<div class="flex justify-center items-center">${u.position.raw}</div>
 		</td>
-		<td class="border border-white/10 h-10">
+		<td class="hidden sm:table-cell border border-white/10 h-10">
 			<div class="flex justify-center items-center">${CLUSTER[u.position.cluster]}</div>
+		</td>
+		<td class="hidden xs:table-cell border border-white/10 h-10">
+			<div class="flex justify-center items-center">${u.position.row}</div>
+		</td>
+		<td class="hidden xs:table-cell border border-white/10 h-10">
+			<div class="flex justify-center items-center">${u.position.pc}</div>
 		</td>`;
 		if (toAdd) {
 			tableBody.append(userRow);
@@ -70,37 +76,38 @@ TABS_BUTTONS.forEach((el, idx) => {
 		TABS_BUTTONS.forEach(btn => {
 			const btnAttr = btn.getAttribute(`data-selectedtab`);
 			const targetEl = document.getElementById(`tab-${btnAttr}`);
-			if (btnAttr != elAttr)
-			{
-				targetEl.classList.toggle(`!hidden`, true);
+			if (btnAttr != elAttr) {
+				targetEl.style.display = 'none';
 				btn.classList.toggle(`!text-yellow-500`, false);
 			}
-			else
-			{
-				targetEl.classList.toggle(`!hidden`, false);
+			else {
+				targetEl.style.display = 'flex';
 				btn.classList.toggle(`!text-yellow-500`, true);
 			}
 		});
 	});
 	const hash = location.hash.replace(/^#/, "");
+	const tabSection = document.getElementById(`tab-${elAttr}`);
 	if (hash != elAttr && !(hash == '' && idx == 0))
-		document.getElementById(`tab-${elAttr}`).classList.toggle(`!hidden`, true);
-	else
+		tabSection.style.display = `none`;
+	else {
+		tabSection.style.display = `flex`;
 		el.classList.toggle(`!text-yellow-500`, true);
+	}
 });
 
 
-var refetchTimeout
-function updateRefetchTime(endTms){
+var refetchTimeout;
+function updateRefetchTime(endTms) {
 	const timeLeft = Math.floor((endTms - Date.now()) / 1000);
-	if (timeLeft < 0 )
-		REFETCH_CNTS.forEach(el=>{el.style.display = `none`;})
+	if (timeLeft < 0)
+		REFETCH_CNTS.forEach(el => { el.style.display = `flex`; });
 	else {
-		REFETCH_CNTS.forEach(el=>{el.style.display = `block`;})
-		REFETCH_TIMES.forEach(el=>{el.innerHTML = timeLeft})
+		REFETCH_CNTS.forEach(el => { el.style.display = `block`; });
+		REFETCH_TIMES.forEach(el => { el.innerHTML = timeLeft; });
 
 		clearTimeout(refetchTimeout);
-		refetchTimeout = setTimeout(()=>updateRefetchTime(endTms), 1000);
+		refetchTimeout = setTimeout(() => updateRefetchTime(endTms), 1000);
 	}
 
 }
@@ -109,14 +116,15 @@ function fetchPeers() {
 	// TODO REPLACE TO: document.baseURI
 	updateLoading(true);
 	fetch(`http://localhost:8080/peers`, { method: 'GET' }).then(res => res.json()).then(data => {
-		const {users, refreshAt } = data;
+		const { users, refreshAt } = data;
 		usersData = users;
 
 		updateLoading(false);
 		updateTable();
 		updateRefetchTime(refreshAt);
 		const now = Date.now();
-		setTimeout(fetchPeers, refreshAt - now > 0 ? refreshAt - now : (1000 * 60) - date.getSeconds());
+		const nowD = new Date();
+		setTimeout(fetchPeers, refreshAt - now > 0 ? refreshAt - now : (1000 * 60) - (nowD.getSeconds() * 1000));
 	});
 }
 fetchPeers();

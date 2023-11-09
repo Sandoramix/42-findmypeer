@@ -16,9 +16,9 @@ FORM.addEventListener(`submit`, (ev) => {
 });
 
 function fetchPeers() {
-	// TODO REPLACE TO: document.baseURI
+	// TODO REPLACE TO: document.location.origin
 	updateLoading(true);
-	fetch(`http://10.12.5.10:8080/peers`, { method: 'GET' }).then(res => res.json()).then(data => {
+	fetch(`${document.location.origin}/peers`, { method: 'GET' }).then(res => res.json()).then(data => {
 		const { users, refreshAt } = data;
 		usersData = users;
 

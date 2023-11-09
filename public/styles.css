@@ -941,18 +941,6 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
-.underline {
-  text-decoration-line: underline;
-}
-
-.decoration-transparent {
-  text-decoration-color: transparent;
-}
-
-.underline-offset-4 {
-  text-underline-offset: 4px;
-}
-
 .outline-none {
   outline: 2px solid transparent;
   outline-offset: 2px;
@@ -966,16 +954,6 @@ video {
   --tw-backdrop-brightness: brightness(.5);
   -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
           backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
-}
-
-.transition-all {
-  transition-property: all;
-  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-  transition-duration: 150ms;
-}
-
-.duration-300 {
-  transition-duration: 300ms;
 }
 
 :root{
@@ -1026,6 +1004,19 @@ a.disabled{
   pointer-events: none;
 }
 
+a:not(.disabled) {
+  text-decoration-line: underline;
+  text-decoration-color: transparent;
+  text-underline-offset: 4px;
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 300ms;
+}
+
+a:not(.disabled):hover {
+  text-decoration-color: rgb(255 255 255 / 0.2);
+}
+
 /* HARDCODED ENTRANCE */
 
 #tab-clusters fieldset:first-of-type tbody tr:last-child .pc:nth-child(4)::after{
@@ -1053,10 +1044,6 @@ a.disabled{
 .hover\:text-yellow-200:hover {
   --tw-text-opacity: 1;
   color: rgb(254 240 138 / var(--tw-text-opacity));
-}
-
-.hover\:decoration-white:hover {
-  text-decoration-color: #fff;
 }
 
 @media (min-width: 400px) {

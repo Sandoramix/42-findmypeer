@@ -42,6 +42,9 @@ body{
 a.disabled{
 	pointer-events: none;
 }
+a:not(.disabled){
+	@apply underline transition-all duration-300 underline-offset-4 decoration-transparent hover:decoration-white/20
+}
 
 /* HARDCODED ENTRANCE */
 

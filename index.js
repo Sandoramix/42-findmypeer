@@ -40,9 +40,10 @@ app.use('/peers', (req, res)=>{
 	res.status(200);
 	const nowD = new Date();
 	const nowTms = Date.now();
+	const seconds = nowD.getSeconds();
 	res.json({
 		users,
-		refreshAt: nowTms - (nowD.getSeconds() * 1000) + (env.api.refreshSeconds * 1000)
+		refreshAt: nowTms - (seconds % env.api.refreshSeconds != 0 ? seconds * 1000 : 0) + (env.api.refreshSeconds * 1000)
 	});
 })
 

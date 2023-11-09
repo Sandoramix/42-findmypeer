@@ -709,6 +709,10 @@ video {
   align-items: flex-start;
 }
 
+.items-end {
+  align-items: flex-end;
+}
+
 .items-center {
   align-items: center;
 }
@@ -937,6 +941,18 @@ video {
   color: rgb(255 255 255 / var(--tw-text-opacity));
 }
 
+.underline {
+  text-decoration-line: underline;
+}
+
+.decoration-transparent {
+  text-decoration-color: transparent;
+}
+
+.underline-offset-4 {
+  text-underline-offset: 4px;
+}
+
 .outline-none {
   outline: 2px solid transparent;
   outline-offset: 2px;
@@ -950,6 +966,16 @@ video {
   --tw-backdrop-brightness: brightness(.5);
   -webkit-backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
           backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
+}
+
+.transition-all {
+  transition-property: all;
+  transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+  transition-duration: 150ms;
+}
+
+.duration-300 {
+  transition-duration: 300ms;
 }
 
 :root{
@@ -1029,6 +1055,10 @@ a.disabled{
   color: rgb(254 240 138 / var(--tw-text-opacity));
 }
 
+.hover\:decoration-white:hover {
+  text-decoration-color: #fff;
+}
+
 @media (min-width: 400px) {
   .xs\:table-cell {
     display: table-cell;
@@ -1103,6 +1133,14 @@ a.disabled{
     position: sticky;
   }
 
+  .xl\:left-0 {
+    left: 0px;
+  }
+
+  .xl\:top-0 {
+    top: 0px;
+  }
+
   .xl\:flex {
     display: flex;
   }
@@ -1115,12 +1153,20 @@ a.disabled{
     width: auto;
   }
 
+  .xl\:grow {
+    flex-grow: 1;
+  }
+
   .xl\:flex-row {
     flex-direction: row;
   }
 
   .xl\:items-start {
     align-items: flex-start;
+  }
+
+  .xl\:justify-start {
+    justify-content: flex-start;
   }
 
   .xl\:justify-center {
@@ -1143,12 +1189,13 @@ a.disabled{
     border-style: none;
   }
 
-  .xl\:p-0 {
-    padding: 0px;
-  }
-
   .xl\:p-4 {
     padding: 1rem;
+  }
+
+  .xl\:px-0 {
+    padding-left: 0px;
+    padding-right: 0px;
   }
 
   .xl\:text-base {

@@ -2,8 +2,8 @@ const SEARCH_INPUT = document.getElementById(`search`);
 const FORM = document.getElementById(`search-form`);
 const TABLE = document.getElementById(`table`);
 const LOADING_SPINNER = document.getElementById(`loading`);
-const REFETCH_CNT = document.getElementById(`refetch-cnt`)
-const REFETCH_TIME = document.getElementById(`refetch-time`)
+const REFETCH_CNTS = document.querySelectorAll(`.refetch-cnt`)
+const REFETCH_TIMES = document.querySelectorAll(`.refetch-time`)
 
 
 var searchDebounceTimeout;
@@ -92,17 +92,17 @@ TABS_BUTTONS.forEach((el, idx) => {
 
 var refetchTimeout
 function updateRefetchTime(endTms){
-
 	const timeLeft = Math.floor((endTms - Date.now()) / 1000);
 	if (timeLeft < 0 )
-		REFETCH_CNT.style.display = `none`;
+		REFETCH_CNTS.forEach(el=>{el.style.display = `none`;})
 	else {
-		REFETCH_CNT.style.display = `block`;
-		REFETCH_TIME.innerHTML = timeLeft;
+		REFETCH_CNTS.forEach(el=>{el.style.display = `block`;})
+		REFETCH_TIMES.forEach(el=>{el.innerHTML = timeLeft})
 
 		clearTimeout(refetchTimeout);
 		refetchTimeout = setTimeout(()=>updateRefetchTime(endTms), 1000);
 	}
+
 }
 
 function fetchPeers() {

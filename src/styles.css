@@ -33,7 +33,6 @@ body{
 	/* @apply items-start pb-5 */
 }
 
-
 @media (max-width: 1280px){
 	#tab-table, #tab-clusters{
 		@apply overflow-y-auto

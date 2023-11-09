@@ -1,25 +1,28 @@
+function updateElements(){
+	updateTable();
+	updateCluster();
+}
 
-
-
+SEARCH_INPUT.value = 'ev'
 SEARCH_INPUT.addEventListener('keyup', (ev) => {
 	clearTimeout(searchDebounceTimeout);
-	searchDebounceTimeout = setTimeout(updateTable, 333);
+	searchDebounceTimeout = setTimeout(updateElements, 333);
 });
 FORM.addEventListener(`submit`, (ev) => {
 	ev.preventDefault();
 	clearTimeout(searchDebounceTimeout);
-	updateTable();
+	updateElements();
 });
 
 function fetchPeers() {
 	// TODO REPLACE TO: document.baseURI
 	updateLoading(true);
-	fetch(`http://localhost:8080/peers`, { method: 'GET' }).then(res => res.json()).then(data => {
+	fetch(`http://10.12.5.10:8080/peers`, { method: 'GET' }).then(res => res.json()).then(data => {
 		const { users, refreshAt } = data;
 		usersData = users;
 
 		updateLoading(false);
-		updateTable();
+		updateElements();
 		updateRefetchTime(refreshAt);
 		const now = Date.now();
 		const nowD = new Date();
@@ -27,4 +30,5 @@ function fetchPeers() {
 	});
 }
 fetchPeers();
+
 

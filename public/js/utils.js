@@ -13,5 +13,20 @@ function updateRefetchTime(endTms) {
 		clearTimeout(refetchTimeout);
 		refetchTimeout = setTimeout(() => updateRefetchTime(endTms), 1000);
 	}
+}
 
+function isSearchIncluded(string){
+	const text = SEARCH_INPUT.value.toLowerCase();
+	if (text == '')
+		return false;
+	return string.includes(text)
+}
+
+function findUserByPosition(cluster, row, pc){
+	for (let u of usersData){
+		const pos = u.position;
+		if (pos.cluster === cluster && pos.row === row && pos.pc ===pc)
+			return u;
+	}
+	return null;
 }

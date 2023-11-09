@@ -1,9 +1,11 @@
+const TABLE = document.getElementById(`table`);
+
 /**
  * Update table data
  */
 function updateTable() {
 	const search = SEARCH_INPUT.value.toLowerCase();
-	const filtered = usersData.filter(x => x.username.includes(search) || x.position.raw.includes(search)).sort((a, b) => a.username.localeCompare(b.username));
+	const filtered = usersData.filter(user => isSearchIncluded(user.username) || isSearchIncluded(user.position.raw)).sort((a, b) => a.username.localeCompare(b.username));
 	const tableBody = TABLE.querySelector(`tbody`);
 
 	if (search == "" || search) {

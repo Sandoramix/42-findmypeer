@@ -4,6 +4,7 @@ function updateLoading(isLoading) {
 
 function updateRefetchTime(endTms) {
 	const timeLeft = Math.floor((endTms - Date.now()) / 1000);
+	console.log({timeLeft, times: [...REFETCH_TIMES]});
 	if (timeLeft < 0)
 		REFETCH_CNTS.forEach(el => { el.style.display = `flex`; });
 	else {

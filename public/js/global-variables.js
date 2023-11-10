@@ -16,7 +16,7 @@ const CLUSTERS = {
 		pc:{
 			active:`#095800`,
 			inactive: `#242424`,
-			found:`#e39000`,
+			found:`#b88d00`,
 			idle: `#424242`
 		}
 	},
@@ -29,7 +29,7 @@ const CLUSTERS = {
 		pc:{
 			active:`#095800`,
 			inactive: `#242424`,
-			found:`#e39000`,
+			found:`#b88d00`,
 			idle: `#424242`
 		}
 	}

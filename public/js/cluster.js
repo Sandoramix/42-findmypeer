@@ -48,14 +48,14 @@ function generateCluster(){
 	Object.values(CLUSTERS).forEach(c=>{
 		const fieldset = document.createElement(`fieldset`)
 		fieldset.setAttribute(`data-cluster`, c.id);
-		fieldset.className = "w-full max-w-6xl p-1 border-t border-b xl:border xl:rounded shrink-0 border-white/10 xl:p-4"
+		fieldset.className = "flex justify-center w-full p-1 border-t border-b xl: max-w-7xl xl:border xl:rounded shrink-0 border-white/10"
 
 		const legend = document.createElement(`legend`);
-		legend.className = `font-bold`;
-		legend.textContent = `Cluster ${c.id} | ${c.name}`;
+		legend.className = "w-[20ch]"
+		legend.innerHTML = `<div class="font-bold text-sm flex-nowrap whitespace-nowrap flex justify-center items-center gap-2"><h3>Cluster ${c.id}</h3><h3>|</h3><h3>${c.name}</h3></div>`;
 
 		const table = document.createElement(`table`);
-		table.className = `w-full grow text-xxxs xs-sm:text-xxxm md:text-xs xl:text-sm 2xl:text-base`;
+		table.className = `w-full grow ${c.columns > 14 ? "text-xxxs sm:text-xxs md:text-xs xl:text-sm 2xl:text-base" : "text-xxxs xs-sm:text-xxxm md:text-xs xl:text-sm 2xl:text-base"}`;
 
 		const thead = document.createElement(`thead`)
 		const theadTr = document.createElement(`tr`)
@@ -65,10 +65,10 @@ function generateCluster(){
 			const th = document.createElement(`th`);
 			if (i === 0)
 			{
-				th.className = `w-3 aspect-square sm:w-8`
+				th.className = `w-3 aspect-square sm:w-8 relative`
 			} else {
 				const div = document.createElement(`div`);
-				div.className = `w-full font-extrabold`
+				div.className = `${c.spacerColumns.includes(i - 1) && c.spacerColumns.length > 1 ? "w-3 sm:w-5" : "w-full"} font-extrabold`
 				div.textContent = !c.spacerColumns.includes(i - 1) ? `P${p++}` : ``;
 				th.append(div);
 			}
@@ -94,13 +94,13 @@ function generateCluster(){
 						div.textContent = `R${c.rows - row + 1}`
 					}
 					else {
-						div.className = `w-5 sm:w-10`
+						div.className = c.spacerColumns.length > 1 ? `w-3 sm:w-5` :`w-5 sm:w-10`
 					}
 					td.append(div);
 					tr.append(td);
 					continue;
 				}
-				td.className = `pc relative border-b border-white/10`
+				td.className = `pc relative ${row < c.rows ? "border-b border-white/10" : ""}`
 				const a = document.createElement(`a`)
 				a.className = `flex flex-col items-center justify-center w-full`
 				// TODO CHANGE IMG TO SVG

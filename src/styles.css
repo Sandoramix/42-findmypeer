@@ -30,7 +30,7 @@ body{
 } */
 
 #tab-clusters .pc:not(.disabled):hover{
-	@apply backdrop-brightness-75
+	@apply backdrop-brightness-90
 }
 
 #tab-clusters .pc img:nth-child(even) ,

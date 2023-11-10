@@ -29,7 +29,12 @@ body{
 	@apply flex-col-reverse
 } */
 
-#tab-clusters .pc:nth-child(even) img{
+#tab-clusters .pc:not(.disabled):hover{
+	@apply backdrop-brightness-75
+}
+
+#tab-clusters .pc img:nth-child(even) ,
+#tab-clusters .pc [data-svg="pc"]:nth-child(even){
 	@apply rotate-180
 }
 

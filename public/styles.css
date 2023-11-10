@@ -699,8 +699,8 @@ video {
   }
 }
 
-.animate-\[bounce_2s_ease-in-out\] {
-  animation: bounce 2s ease-in-out;
+.animate-\[bounce_2s_ease-in-out_infinite\] {
+  animation: bounce 2s ease-in-out infinite;
 }
 
 @keyframes spin {
@@ -713,22 +713,6 @@ video {
   animation: spin 1s linear infinite;
 }
 
-@keyframes bounce {
-  0%, 100% {
-    transform: translateY(-25%);
-    animation-timing-function: cubic-bezier(0.8,0,1,1);
-  }
-
-  50% {
-    transform: none;
-    animation-timing-function: cubic-bezier(0,0,0.2,1);
-  }
-}
-
-.animate-\[bounce_2s_ease-in-out_infinite\] {
-  animation: bounce 2s ease-in-out infinite;
-}
-
 .grid-flow-row {
   grid-auto-flow: row;
 }
@@ -739,10 +723,6 @@ video {
 
 .flex-col {
   flex-direction: column;
-}
-
-.items-start {
-  align-items: flex-start;
 }
 
 .items-end {
@@ -789,10 +769,6 @@ video {
   text-overflow: ellipsis;
 }
 
-.rounded-xl {
-  border-radius: 0.75rem;
-}
-
 .border {
   border-width: 1px;
 }
@@ -821,9 +797,13 @@ video {
   border-color: rgb(255 255 255 / 0.2);
 }
 
-.bg-black {
-  --tw-bg-opacity: 1;
-  background-color: rgb(0 0 0 / var(--tw-bg-opacity));
+.border-neutral-400\/10 {
+  border-color: rgb(163 163 163 / 0.1);
+}
+
+.border-neutral-900 {
+  --tw-border-opacity: 1;
+  border-color: rgb(23 23 23 / var(--tw-border-opacity));
 }
 
 .bg-black\/20 {
@@ -846,10 +826,6 @@ video {
 .bg-zinc-900 {
   --tw-bg-opacity: 1;
   background-color: rgb(24 24 27 / var(--tw-bg-opacity));
-}
-
-.bg-black\/10 {
-  background-color: rgb(0 0 0 / 0.1);
 }
 
 .fill-cyan-600 {
@@ -964,9 +940,9 @@ video {
   color: rgb(234 179 8 / var(--tw-text-opacity)) !important;
 }
 
-.text-neutral-100 {
+.text-neutral-200 {
   --tw-text-opacity: 1;
-  color: rgb(245 245 245 / var(--tw-text-opacity));
+  color: rgb(229 229 229 / var(--tw-text-opacity));
 }
 
 .text-neutral-600 {
@@ -1070,6 +1046,10 @@ a:not(.disabled):hover {
 }
 
 /* HARDCODED ENTRANCE */
+
+/* #tab-clusters tbody tr:not(:last-child){
+	@apply border-b border-white/10
+} */
 
 #tab-clusters fieldset:first-of-type tbody tr:last-child .pc:nth-child(4)::after{
   content: "|Entrance|";

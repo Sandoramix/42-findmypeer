@@ -52,6 +52,10 @@ a:not(.disabled){
 
 /* HARDCODED ENTRANCE */
 
+/* #tab-clusters tbody tr:not(:last-child){
+	@apply border-b border-white/10
+} */
+
 #tab-clusters fieldset:first-of-type tbody tr:last-child .pc:nth-child(4)::after{
 	content: "|Entrance|";
 	@apply font-bold absolute -bottom-5 left-1/2 -translate-x-1/2 text-neutral-300

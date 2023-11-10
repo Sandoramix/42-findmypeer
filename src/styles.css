@@ -54,11 +54,11 @@ a:not(.disabled){
 
 #tab-clusters fieldset:first-of-type tbody tr:last-child .pc:nth-child(4)::after{
 	content: "|Entrance|";
-	@apply font-bold -bottom-5 left-1/2 -translate-x-1/2 text-neutral-300
+	@apply font-bold absolute -bottom-5 left-1/2 -translate-x-1/2 text-neutral-300
 }
 
 #tab-clusters fieldset:last-of-type tbody tr:first-child td:first::before{
 	content: "Entrance";
 	position: absolute;
-	@apply font-bold underline -bottom-5 left-1/2 -translate-x-1/2
+	@apply font-bold underline -bottom-3 left-1/2 -translate-x-1/2
 }

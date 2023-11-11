@@ -113,7 +113,7 @@ function generateCluster() {
 					tr.append(td);
 					continue;
 				}
-				td.className = `pc relative ${row < c.rows ? "border-b border-neutral-950/50" : ""}`;
+				td.className = `pc relative ${row > 1 ? "border-b border-neutral-950/50" : ""}`;
 				const a = document.createElement(`a`);
 				a.className = `flex flex-col items-center justify-center w-full`;
 

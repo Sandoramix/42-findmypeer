@@ -52,7 +52,7 @@ app.use(EXPRESS.static(`public`))
 
 const httpServer = HTTP.createServer(app).on('listening',()=>{
 	console.log(`Running https on http://localhost:${env.http.port}`);
-});;
+});
 const httpsServer = HTTPS.createServer({key: env.pvKey, cert: env.cert}, app).on('listening',()=>{
 	console.log(`Running https on https://localhost:${env.https.port}`);
 });

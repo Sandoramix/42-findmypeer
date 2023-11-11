@@ -8,7 +8,7 @@ function updateCluster() {
 			const pcs = cRow.querySelectorAll(`.pc`);
 			pcs.forEach((crPc, crPcIdx) => {
 				const [cluster, row, pc] = [clusterIdx + 1, rows.length - cRowIdx, crPcIdx + 1];
-				const colors = CLUSTERS[cluster].pc;
+				const colors = CLUSTERS[cluster].pcColors;
 
 				const pcSvg = crPc.querySelector(`[data-svg="pc"]`);
 				const pcSvgFill = crPc.querySelector(`path`);
@@ -63,7 +63,7 @@ function generateCluster() {
 	Object.values(CLUSTERS).forEach(c => {
 		const fieldset = document.createElement(`fieldset`);
 		fieldset.setAttribute(`data-cluster`, c.id);
-		fieldset.className = "flex justify-center w-full p-1 border-t border-b xl: max-w-7xl xl:border xl:rounded-lg shrink-0 border-neutral-950";
+		fieldset.className = `flex justify-center w-full p-1 border-t border-b xl: max-w-7xl xl:border xl:rounded-lg shrink-0 border-neutral-950 ${c.isWeird ? `weird` :``}`;
 
 		const legend = document.createElement(`legend`);
 		legend.className = "w-[20ch]";
@@ -94,7 +94,7 @@ function generateCluster() {
 		const tbody = document.createElement(`tbody`);
 		tbody.className = `font-light`;
 
-		for (let row = 1; row <= c.rows; row++) {
+		for (let row = c.rows; row >= 1; row--) {
 			const tr = document.createElement(`tr`);
 			let pc = 1;
 			for (let i = 0; i < c.columns + 1; i++) {
@@ -104,7 +104,7 @@ function generateCluster() {
 					const div = document.createElement(`div`);
 					if (i === 0) {
 						div.className = `w-5 h-5 text-xs font-extrabold text-center xs:text-sm sm:text-base`;
-						div.textContent = `R${c.rows - row + 1}`;
+						div.textContent = `R${row}`;
 					}
 					else {
 						div.className = c.spacerColumns.length > 1 ? `w-3 sm:w-5` : `w-5 sm:w-10`;
@@ -116,24 +116,27 @@ function generateCluster() {
 				td.className = `pc relative ${row < c.rows ? "border-b border-neutral-950/50" : ""}`;
 				const a = document.createElement(`a`);
 				a.className = `flex flex-col items-center justify-center w-full`;
-				// TODO CHANGE IMG TO SVG
+
 				const pcSvg = document.importNode(PC_TEMPLATE.content, true);
-				// const img = document.createElement(`img`)
-				// img.className = `object-scale-down w-4 xs:w-7 sm:w-10`
-				// img.src = `images/monitor.png`
+				if (c.isWeird){
+					const rotation = c.rotations[row][pc - 1] ? "rotate-180" : "rotate-0"
+					pcSvg.childNodes.forEach(el=>el.nodeType===1 ?el.classList.add(rotation): null);
+					console.log({c: c.id, row, pc, rotation});
+				}
 
 				const p = document.createElement(`p`);
 				p.setAttribute(`data-username`, '');
 				p.className = `w-[8ch] text-ellipsis overflow-hidden`;
 				p.textContent = `pasquale`;
 
-				if (pc++ % 2 != 0) {
+				if ((pc % 2 != 0 && !c.isWeird) || (c.isWeird && c.rotations[row][pc - 1])) {
 					a.append(p);
 					a.append(pcSvg);
 				} else {
 					a.append(pcSvg);
 					a.append(p);
 				}
+				pc++;
 				td.append(a);
 				tr.append(td);
 			}

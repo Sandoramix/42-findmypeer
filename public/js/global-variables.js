@@ -13,11 +13,20 @@ const CLUSTERS = {
 		rows: 6,
 		columns: 13,
 		spacerColumns: [7],
-		pc:{
+		pcColors:{
 			active:`#095800`,
 			inactive: `#242424`,
 			found:`#b88d00`,
 			idle: `#424242`
+		},
+		isWeird:true,
+		rotations:{
+			1: [1,0,1,0,1,0,0,1,0,1,0,1],
+			2: [1,0,1,0,1,0,0,1,0,1,0,1],
+			3: [0,1,0,1,0,1,1,0,1,0,1,0],
+			4: [1,0,1,0,1,0,0,1,0,1,0,1],
+			5: [0,1,0,1,0,1,1,0,1,0,1,0],
+			6: [1,0,1,0,1,0,0,1,0,1,0,1],
 		}
 	},
 	2: {
@@ -26,12 +35,14 @@ const CLUSTERS = {
 		rows: 6,
 		columns: 15,
 		spacerColumns: [4, 10],
-		pc:{
+		pcColors:{
 			active:`#095800`,
 			inactive: `#242424`,
 			found:`#b88d00`,
 			idle: `#424242`
-		}
+		},
+		rotations:{},
+		isWeird:false
 	}
 }
 

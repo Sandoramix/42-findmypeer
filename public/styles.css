@@ -683,6 +683,16 @@ video {
   border-collapse: collapse;
 }
 
+.rotate-0 {
+  --tw-rotate: 0deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
+.rotate-180 {
+  --tw-rotate: 180deg;
+  transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
+}
+
 .scale-90 {
   --tw-scale-x: .9;
   --tw-scale-y: .9;
@@ -1064,8 +1074,8 @@ body{
           backdrop-filter: var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);
 }
 
-#tab-clusters .pc img:nth-child(even) ,
-#tab-clusters .pc [data-svg="pc"]:nth-child(even) {
+#tab-clusters [data-cluster]:not(.weird) .pc img:nth-child(even) ,
+#tab-clusters [data-cluster]:not(.weird) .pc [data-svg="pc"]:nth-child(even) {
   --tw-rotate: 180deg;
   transform: translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y));
 }
@@ -1226,8 +1236,8 @@ a:not(.disabled):hover {
     display: none !important;
   }
 
-  .xl\:h-12 {
-    height: 3rem;
+  .xl\:hidden {
+    display: none;
   }
 
   .xl\:w-auto {
@@ -1236,6 +1246,15 @@ a:not(.disabled):hover {
 
   .xl\:w-full {
     width: 100%;
+  }
+
+  .xl\:w-min {
+    width: -moz-min-content;
+    width: min-content;
+  }
+
+  .xl\:w-\[20ch\] {
+    width: 20ch;
   }
 
   .xl\:grow {
@@ -1256,10 +1275,6 @@ a:not(.disabled):hover {
 
   .xl\:items-center {
     align-items: center;
-  }
-
-  .xl\:justify-start {
-    justify-content: flex-start;
   }
 
   .xl\:justify-center {
@@ -1290,10 +1305,6 @@ a:not(.disabled):hover {
   .xl\:py-2 {
     padding-top: 0.5rem;
     padding-bottom: 0.5rem;
-  }
-
-  .xl\:pr-5 {
-    padding-right: 1.25rem;
   }
 
   .xl\:text-base {

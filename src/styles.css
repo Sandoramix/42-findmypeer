@@ -33,8 +33,8 @@ body{
 	@apply backdrop-brightness-90
 }
 
-#tab-clusters .pc img:nth-child(even) ,
-#tab-clusters .pc [data-svg="pc"]:nth-child(even){
+#tab-clusters [data-cluster]:not(.weird) .pc img:nth-child(even) ,
+#tab-clusters [data-cluster]:not(.weird) .pc [data-svg="pc"]:nth-child(even){
 	@apply rotate-180
 }
 

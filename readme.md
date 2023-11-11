@@ -9,4 +9,4 @@ You can find your peer either from:
 - [x] Table
 - [x] Graphical representation of clusters.
 
-The search bar is useful for filtering peers by their intra's nickname or by filtering the cluster position (`<cluster_n>r<cluster_row>p<cluster_pc>`).
+The search bar is useful for filtering peers by their intra's nickname or by filtering the cluster position (c`<cluster>`r`<row>`p`<pc>`).

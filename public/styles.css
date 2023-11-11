@@ -719,6 +719,12 @@ video {
   animation: spin 1s linear infinite;
 }
 
+.select-none {
+  -webkit-user-select: none;
+     -moz-user-select: none;
+          user-select: none;
+}
+
 .grid-flow-row {
   grid-auto-flow: row;
 }
@@ -995,6 +1001,10 @@ video {
   color: rgb(239 68 68 / var(--tw-text-opacity));
 }
 
+.text-transparent {
+  color: transparent;
+}
+
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
@@ -1234,6 +1244,10 @@ a:not(.disabled):hover {
 
   .xl\:flex-row {
     flex-direction: row;
+  }
+
+  .xl\:flex-col {
+    flex-direction: column;
   }
 
   .xl\:items-start {

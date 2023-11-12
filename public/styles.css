@@ -1024,11 +1024,6 @@ video {
   color: rgb(229 229 229 / var(--tw-text-opacity));
 }
 
-.text-neutral-600 {
-  --tw-text-opacity: 1;
-  color: rgb(82 82 82 / var(--tw-text-opacity));
-}
-
 .text-neutral-800 {
   --tw-text-opacity: 1;
   color: rgb(38 38 38 / var(--tw-text-opacity));
@@ -1221,11 +1216,6 @@ a:not(.disabled):hover {
 
   .sm\:text-xxs {
     font-size: 0.6rem;
-  }
-
-  .sm\:text-neutral-600 {
-    --tw-text-opacity: 1;
-    color: rgb(82 82 82 / var(--tw-text-opacity));
   }
 }
 

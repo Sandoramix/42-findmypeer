@@ -6,8 +6,8 @@
 	"scripts": {
 		"start": "node .",
 		"test": "nodemon index.js",
-		"tailwind":"npx tailwindcss -i ./src/styles.css -o ./public/styles.css",
-		"tailwind:watch": "npx tailwindcss -i ./src/styles.css -o ./public/styles.css --watch"
+		"tw":"npx tailwindcss -i ./src/styles.css -o ./public/styles.css",
+		"tw:watch": "npx tailwindcss -i ./src/styles.css -o ./public/styles.css --watch"
 	},
 	"keywords": [],
 	"author": "",

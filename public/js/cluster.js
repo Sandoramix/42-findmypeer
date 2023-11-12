@@ -17,7 +17,7 @@ function updateCluster() {
 				crPc.classList.toggle(`!pointer-events-none`, !user);
 
 				const isUserMatched = user != null && isSearchValueIncluded(user.username);
-				const isSearchIncluded = isSearchValueIncluded(`c${cluster}r${row}p${pc}`) || isSearchValueIncluded(CLUSTERS[cluster].name);
+				const isClusterMatched = isSearchValueIncluded(`c${cluster}r${row}p${pc}`) || isSearchValueIncluded(CLUSTERS[cluster].name);
 				const userLink = crPc.querySelector(`a`);
 
 				/** @type {HTMLParagraphElement} */
@@ -35,15 +35,12 @@ function updateCluster() {
 				userLink.classList.toggle(`!pointer-events-none`, !user);
 				userLink.classList.toggle(`!text-amber-400`, isUserMatched);
 
+				pcSvgFill.style.fill = searchValue() == '' && user && !isUserMatched && !isClusterMatched ? colors.active.default : colors.inactive.matched;
+				if (isUserMatched || isClusterMatched)
+					pcSvgFill.style.fill = colors.active.matched;
 
-				if (user != null) {
-					pcSvgFill.style.fill = isUserMatched || isSearchIncluded
-							? colors.active.matched
-							: colors.active.default;
-				} else {
-					pcSvgFill.style.fill = isSearchIncluded ? colors.inactive.matched : colors.inactive.default;
-				}
-
+				if (!user)
+					pcSvgFill.style.fill = colors.inactive.default;
 			});
 		});
 	});

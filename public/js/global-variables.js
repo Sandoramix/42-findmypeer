@@ -46,7 +46,7 @@ const CLUSTERS = {
 			},
 			inactive: {
 				default: `#242424`,
-				matched: `#666`
+				matched: `#505050`
 			},
 		},
 		isWeird: false,
@@ -61,3 +61,8 @@ var searchDebounceTimeout;
  */
 var usersData = [];
 var refetchTimeout;
+
+
+function searchValue(){
+	return SEARCH_INPUT.value
+}

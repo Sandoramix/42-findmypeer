@@ -12,7 +12,9 @@
  */
 
 function updateLoading(isLoading) {
-	LOADING_SPINNER.classList.toggle(`!hidden`, !isLoading);
+	setTimeout(()=>{
+		LOADING_SPINNER.classList.toggle(`!hidden`, !isLoading)
+	}, 200)
 }
 
 function updateRefetchTime(endTms) {

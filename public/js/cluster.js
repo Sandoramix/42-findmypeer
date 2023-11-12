@@ -8,49 +8,41 @@ function updateCluster() {
 			const pcs = cRow.querySelectorAll(`.pc`);
 			pcs.forEach((crPc, crPcIdx) => {
 				const [cluster, row, pc] = [clusterIdx + 1, rows.length - cRowIdx, crPcIdx + 1];
+				const user = findUserByPosition(cluster, row, pc);
 				const colors = CLUSTERS[cluster].pcColors;
 
 				const pcSvg = crPc.querySelector(`[data-svg="pc"]`);
-				const pcSvgFill = crPc.querySelector(`path`);
+				const pcSvgFill = pcSvg.querySelector(`path`);
 
-				const user = findUserByPosition(cluster, row, pc);
+				crPc.classList.toggle(`!pointer-events-none`, !user);
+
+				const isUserMatched = user != null && isSearchValueIncluded(user.username);
+				const isSearchIncluded = isSearchValueIncluded(`c${cluster}r${row}p${pc}`) || isSearchValueIncluded(CLUSTERS[cluster].name);
 				const userLink = crPc.querySelector(`a`);
+
+				/** @type {HTMLParagraphElement} */
 				const usernameP = userLink.querySelector(`[data-username]`);
+				usernameP.textContent = user ? user.username : `n/a`;
+				usernameP.setAttribute(`data-username`, usernameP.textContent);
+				usernameP.classList.toggle(`!text-neutral-600`, !user);
 
-				userLink.href = ``;
-
-				if (SEARCH_INPUT.value == '' && user && !isSearchIncluded(user.username) && !isSearchIncluded(`c${cluster}r${row}p${pc}`)) {
-					pcSvgFill.style.fill = colors.active;
-				} else {
-					pcSvgFill.style.fill = colors.idle;
-				}
-
-				userLink.classList.toggle(`text-neutral-600`, false);
-				userLink.classList.toggle(`!text-amber-400`, false);
-				crPc.classList.toggle(`disabled`, false);
 				// userLink.classList.toggle(`!font-medium`, false);
-				if (user && isSearchIncluded(user.username) || isSearchIncluded(`c${cluster}r${row}p${pc}`)) {
-					pcSvgFill.style.fill = colors.found;
-					userLink.classList.toggle(`!text-amber-400`, true);
-					// userLink.classList.toggle(`!font-medium`, true);
-				}
-
-
-				if (!user) {
-					pcSvgFill.style.fill = colors.inactive;
-					userLink.classList.add('disabled');
-					userLink.classList.toggle(`text-neutral-600`, true);
-
-					usernameP.textContent = `n/a`;
-					crPc.classList.toggle(`disabled`, true);
-					return;
-				}
-				userLink.classList.remove('disabled');
-				userLink.href = `https://profile.intra.42.fr/users/${user.username}`;
-				userLink.target = '_black';
 				userLink.referrerPolicy = 'noreferrer';
+				userLink.target = user ? `_blank` : ``;
+				userLink.href = user ? `https://profile.intra.42.fr/users/${user.username}` : `#`;
 
-				usernameP.textContent = user.username;
+				userLink.classList.toggle(`!text-neutral-600`, !user);
+				userLink.classList.toggle(`!pointer-events-none`, !user);
+				userLink.classList.toggle(`!text-amber-400`, isUserMatched);
+
+
+				if (user != null) {
+					pcSvgFill.style.fill = isUserMatched || isSearchIncluded
+							? colors.active.matched
+							: colors.active.default;
+				} else {
+					pcSvgFill.style.fill = isSearchIncluded ? colors.inactive.matched : colors.inactive.default;
+				}
 
 			});
 		});
@@ -63,7 +55,7 @@ function generateCluster() {
 	Object.values(CLUSTERS).forEach(c => {
 		const fieldset = document.createElement(`fieldset`);
 		fieldset.setAttribute(`data-cluster`, c.id);
-		fieldset.className = `flex justify-center w-full p-1 border-t border-b xl: max-w-7xl xl:border xl:rounded-lg shrink-0 border-neutral-950 ${c.isWeird ? `weird` :``}`;
+		fieldset.className = `flex justify-center w-full p-1 border-t border-b xl: max-w-7xl xl:border xl:rounded-lg shrink-0 border-neutral-950 ${c.isWeird ? `weird` : ``}`;
 
 		const legend = document.createElement(`legend`);
 		legend.className = "w-[20ch]";
@@ -118,16 +110,15 @@ function generateCluster() {
 				a.className = `flex flex-col items-center justify-center w-full`;
 
 				const pcSvg = document.importNode(PC_TEMPLATE.content, true);
-				if (c.isWeird){
-					const rotation = c.rotations[row][pc - 1] ? "rotate-180" : "rotate-0"
-					pcSvg.childNodes.forEach(el=>el.nodeType===1 ?el.classList.add(rotation): null);
-					console.log({c: c.id, row, pc, rotation});
+				if (c.isWeird) {
+					const rotation = c.rotations[row][pc - 1] ? "rotate-180" : "rotate-0";
+					pcSvg.childNodes.forEach(el => el.nodeType === 1 ? el.classList.add(rotation) : null);
 				}
 
 				const p = document.createElement(`p`);
-				p.setAttribute(`data-username`, '');
-				p.className = `w-[8ch] text-ellipsis overflow-hidden`;
-				p.textContent = `pasquale`;
+				p.textContent = `n/a`;
+				p.setAttribute(`data-username`, p.textContent);
+				p.className = `w-[8ch] text-ellipsis overflow-hidden text-white`;
 
 				if ((pc % 2 != 0 && !c.isWeird) || (c.isWeird && c.rotations[row][pc - 1])) {
 					a.append(p);
@@ -147,12 +138,8 @@ function generateCluster() {
 		fieldset.append(table);
 		CLUSTERS_SECTION.append(fieldset);
 	});
-	_updateClusterRef();
-}
 
-function _updateClusterRef() {
 	CLUSTER_TABLES = CLUSTERS_SECTION.querySelectorAll(`#tab-clusters table`);
 }
 
 generateCluster();
-_updateClusterRef();

@@ -14,8 +14,11 @@
 	scroll-behavior: smooth;
 }
 
+
 body{
 	height: var(--body-height);
+	color: whitesmoke;
+	@apply text-white
 }
 
 *::-webkit-scrollbar-thumb{
@@ -38,9 +41,11 @@ body{
 	@apply rotate-180
 }
 
-#tab-clusters td:first-child{
-	/* @apply items-start pb-5 */
+
+.pc [data-svg="pc"] *{
+	@apply transition-colors duration-200
 }
+
 
 @media (max-width: 1280px){
 	#tab-table, #tab-clusters{
@@ -48,9 +53,8 @@ body{
 	}
 }
 
-a.disabled{
-	pointer-events: none;
-}
+
+
 a:not(.disabled){
 	@apply underline transition-all duration-300 underline-offset-2 decoration-transparent hover:decoration-white/20
 }

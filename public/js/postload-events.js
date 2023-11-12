@@ -16,7 +16,7 @@ TABS_BUTTONS.forEach((el, idx) => {
 		});
 	});
 	const hash = location.hash.replace(/^#/, "");
-	const included = !![...TABS_BUTTONS].find(el => el.getAttribute(`data-selectedtab`)=== hash)
+	const included = !![...TABS_BUTTONS].find(el => el.getAttribute(`data-selectedtab`) === hash);
 	const tabSection = document.getElementById(`tab-${elAttr}`);
 	if (hash != elAttr && !(!included && idx == 0))
 		tabSection.style.display = `none`;

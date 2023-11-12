@@ -11,9 +11,15 @@
 <body class="flex flex-col justify-center w-full bg-zinc-800 text-neutral-200">
 	<header class="flex flex-col justify-center w-full shrink-0 bg-black/20">
 		<div class="flex items-center justify-center w-full h-16 shrink-0 bg-black/50">
-			<form id="search-form" class="flex flex-col items-center justify-center w-full h-full">
+			<form id="search-form" class="relative flex items-center justify-center w-full h-full">
 				<label for="search" class="sr-only"><h2>Nickname dell&apos;intra</h2></label>
-				<input type="text" id="search" placeholder="Enter intra's nickname" autocomplete="off" class="w-full h-full px-3 py-1 text-center text-white bg-transparent outline-none " autofocus/>
+				<input type="text" id="search" placeholder="Enter intra's nickname" autocomplete="off" class="w-full h-full px-3 py-1 text-base text-center text-white bg-transparent outline-none sm:text-xl " autofocus/>
+				<button  role="search" type="submit" class="absolute top-0 right-0 p-5 pointer-events-none">
+					<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -960 960 960" class="w-6 h-6 fill-white">
+						<path
+							d="M784-120 532-372q-30 24-69 38t-83 14q-109 0-184.5-75.5T120-580q0-109 75.5-184.5T380-840q109 0 184.5 75.5T640-580q0 44-14 83t-38 69l252 252-56 56ZM380-400q75 0 127.5-52.5T560-580q0-75-52.5-127.5T380-760q-75 0-127.5 52.5T200-580q0 75 52.5 127.5T380-400Z" />
+					</svg>
+				</button>
 			</form>
 		</div>
 

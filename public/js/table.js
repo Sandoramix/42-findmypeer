@@ -5,7 +5,7 @@ const TABLE = document.getElementById(`table`);
  */
 function updateTable() {
 	const search = SEARCH_INPUT.value.toLowerCase();
-	const filtered = usersData.filter(user => isSearchIncluded(user.username) || isSearchIncluded(user.position.raw) || search == '').sort((a, b) => a.username.localeCompare(b.username));
+	const filtered = usersData.filter(user => isSearchValueIncluded(user.username) || isSearchValueIncluded(user.position.raw) || search == '' || isSearchValueIncluded(CLUSTERS[user.position.cluster].name)).sort((a, b) => a.username.localeCompare(b.username));
 	const tableBody = TABLE.querySelector(`tbody`);
 
 	if (search == "" || search) {

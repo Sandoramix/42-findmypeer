@@ -6,7 +6,7 @@
 	"scripts": {
 		"start": "node .",
 		"test": "nodemon index.js",
-		"tw":"npx tailwindcss -i ./src/styles.css -o ./public/styles.css",
+		"tw": "npx tailwindcss -i ./src/styles.css -o ./public/styles.css",
 		"tw:watch": "npx tailwindcss -i ./src/styles.css -o ./public/styles.css --watch"
 	},
 	"keywords": [],

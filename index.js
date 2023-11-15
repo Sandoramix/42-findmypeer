@@ -15,7 +15,8 @@ const env = {
 	},
 	api: {
 		refreshSeconds: 60
-	}
+	},
+	whoCachePath:`/nfs/sgoinfre/goinfre/Perso/who.cache`
 };
 
 const app = EXPRESS();
@@ -25,10 +26,11 @@ app.use(cors);
 app.options("*", cors);
 
 app.use('/peers', (req, res) => {
-	const rawData = FS.readFileSync(`/nfs/sgoinfre/goinfre/Perso/who.cache`, 'utf8');
+	const rawData = FS.readFileSync(env.whoCachePath, 'utf8');
 	const users = rawData.split('\n').map(u => {
 		const [username] = u.split(` - `);
-		const raw = u.split(` - `).at(-1);
+		const rawSplit = u.split(` - `);
+		const raw = rawSplit[rawSplit.length - 1];
 		if (!username || !raw)
 			return (null);
 		const cluster = parseInt(raw.split('c')[1]);
@@ -39,11 +41,13 @@ app.use('/peers', (req, res) => {
 
 	res.status(200);
 	const nowD = new Date();
-	const nowTms = Date.now();
+	const nowTms = Date.now() - nowD.getMilliseconds();
 	const seconds = nowD.getSeconds();
+
+	const calc = nowTms - (seconds % env.api.refreshSeconds != 0 ? seconds * 1000 : 0) + (env.api.refreshSeconds * 1000);
 	res.json({
 		users,
-		refreshAt: nowTms - (seconds % env.api.refreshSeconds != 0 ? seconds * 1000 : 0) + (env.api.refreshSeconds * 1000)
+		refreshAt: seconds > env.api.refreshSeconds / 100 * 90 ? calc + (env.api.refreshSeconds * 1000) : calc
 	});
 });
 

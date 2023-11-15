@@ -18,7 +18,8 @@ function updateLoading(isLoading) {
 }
 
 function updateRefetchTime(endTms) {
-	const timeLeft = Math.floor((endTms - Date.now()) / 1000);
+	const timeLeft = Math.floor((endTms - Date.now() - new Date().getMilliseconds()) / 1000 + 1);
+
 	if (timeLeft < 0)
 		REFETCH_CNTS.forEach(el => { el.style.display = `none`; });
 	else {

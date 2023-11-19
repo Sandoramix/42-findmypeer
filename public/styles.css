@@ -595,12 +595,20 @@ video {
   margin-right: auto;
 }
 
-.flex {
-  display: flex;
+.mb-8 {
+  margin-bottom: 2rem;
+}
+
+.block {
+  display: block;
 }
 
 .\!flex {
   display: flex !important;
+}
+
+.flex {
+  display: flex;
 }
 
 .table {
@@ -623,12 +631,20 @@ video {
   aspect-ratio: 1 / 1;
 }
 
+.\!h-24 {
+  height: 6rem !important;
+}
+
 .h-10 {
   height: 2.5rem;
 }
 
 .h-12 {
   height: 3rem;
+}
+
+.h-14 {
+  height: 3.5rem;
 }
 
 .h-16 {
@@ -639,16 +655,16 @@ video {
   height: 6rem;
 }
 
-.h-32 {
-  height: 8rem;
-}
-
 .h-5 {
   height: 1.25rem;
 }
 
 .h-6 {
   height: 1.5rem;
+}
+
+.h-8 {
+  height: 2rem;
 }
 
 .h-full {
@@ -659,20 +675,8 @@ video {
   height: var(--body-height);
 }
 
-.h-20 {
-  height: 5rem;
-}
-
-.h-8 {
-  height: 2rem;
-}
-
-.\!h-24 {
-  height: 6rem !important;
-}
-
-.h-14 {
-  height: 3.5rem;
+.\!w-24 {
+  width: 6rem !important;
 }
 
 .w-24 {
@@ -705,10 +709,6 @@ video {
 
 .w-screen {
   width: 100vw;
-}
-
-.\!w-24 {
-  width: 6rem !important;
 }
 
 .min-w-\[20ch\] {
@@ -871,6 +871,15 @@ video {
   border-top-width: 0px;
 }
 
+.border-neutral-200 {
+  --tw-border-opacity: 1;
+  border-color: rgb(229 229 229 / var(--tw-border-opacity));
+}
+
+.border-neutral-200\/20 {
+  border-color: rgb(229 229 229 / 0.2);
+}
+
 .border-neutral-700\/40 {
   border-color: rgb(64 64 64 / 0.4);
 }
@@ -892,12 +901,29 @@ video {
   border-color: rgb(255 255 255 / 0.2);
 }
 
+.border-neutral-200\/40 {
+  border-color: rgb(229 229 229 / 0.4);
+}
+
+.border-neutral-300\/40 {
+  border-color: rgb(212 212 212 / 0.4);
+}
+
+.border-neutral-200\/50 {
+  border-color: rgb(229 229 229 / 0.5);
+}
+
 .bg-black\/20 {
   background-color: rgb(0 0 0 / 0.2);
 }
 
 .bg-black\/50 {
   background-color: rgb(0 0 0 / 0.5);
+}
+
+.bg-neutral-950 {
+  --tw-bg-opacity: 1;
+  background-color: rgb(10 10 10 / var(--tw-bg-opacity));
 }
 
 .bg-transparent {
@@ -914,28 +940,12 @@ video {
   background-color: rgb(24 24 27 / var(--tw-bg-opacity));
 }
 
-.bg-neutral-700 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(64 64 64 / var(--tw-bg-opacity));
-}
-
-.bg-neutral-500 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(115 115 115 / var(--tw-bg-opacity));
-}
-
-.bg-neutral-900 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(23 23 23 / var(--tw-bg-opacity));
-}
-
-.bg-neutral-950 {
-  --tw-bg-opacity: 1;
-  background-color: rgb(10 10 10 / var(--tw-bg-opacity));
-}
-
 .fill-cyan-600 {
   fill: #0891b2;
+}
+
+.fill-green-700 {
+  fill: #15803d;
 }
 
 .fill-neutral-800 {
@@ -950,36 +960,20 @@ video {
   fill: #fff;
 }
 
-.fill-emerald-800 {
-  fill: #065f46;
-}
-
-.fill-green-700 {
-  fill: #15803d;
-}
-
-.stroke-2 {
-  stroke-width: 2;
-}
-
-.stroke-1 {
-  stroke-width: 1;
-}
-
 .p-1 {
   padding: 0.25rem;
 }
 
-.p-5 {
-  padding: 1.25rem;
+.p-2 {
+  padding: 0.5rem;
 }
 
 .p-4 {
   padding: 1rem;
 }
 
-.p-2 {
-  padding: 0.5rem;
+.p-5 {
+  padding: 1.25rem;
 }
 
 .px-3 {
@@ -1014,6 +1008,16 @@ video {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+.text-4xl {
+  font-size: 2.25rem;
+  line-height: 2.5rem;
+}
+
 .text-base {
   font-size: 1rem;
   line-height: 1.5rem;
@@ -1038,14 +1042,9 @@ video {
   font-size: 0.4rem;
 }
 
-.text-2xl {
-  font-size: 1.5rem;
-  line-height: 2rem;
-}
-
-.text-4xl {
-  font-size: 2.25rem;
-  line-height: 2.5rem;
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
 }
 
 .\!font-medium {
@@ -1109,6 +1108,10 @@ video {
 .text-white {
   --tw-text-opacity: 1;
   color: rgb(255 255 255 / var(--tw-text-opacity));
+}
+
+.opacity-50 {
+  opacity: 0.5;
 }
 
 .outline-none {
@@ -1216,16 +1219,6 @@ a:not(.disabled):hover {
 	@apply text-xxs xs:text-xs sm:text-sm font-bold underline -left-0 -top-5 text-neutral-300
 } */
 
-.hover\:bg-slate-800:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(30 41 59 / var(--tw-bg-opacity));
-}
-
-.hover\:bg-slate-900:hover {
-  --tw-bg-opacity: 1;
-  background-color: rgb(15 23 42 / var(--tw-bg-opacity));
-}
-
 .hover\:bg-slate-950:hover {
   --tw-bg-opacity: 1;
   background-color: rgb(2 6 23 / var(--tw-bg-opacity));
@@ -1299,6 +1292,11 @@ a:not(.disabled):hover {
 
   .sm\:text-xxs {
     font-size: 0.6rem;
+  }
+
+  .sm\:text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
   }
 }
 

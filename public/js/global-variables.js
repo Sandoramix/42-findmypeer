@@ -47,5 +47,7 @@ var refetchTimeout;
 
 
 function searchValue() {
+	if (!SEARCH_INPUT)
+		return false;
 	return SEARCH_INPUT.value;
 }

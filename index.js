@@ -38,8 +38,8 @@ app.use('/peers', (req, res) => {
 });
 
 app.use(`/clusters`, (req, res) => {
-	const rawData = FS.readFileSync(env.CLUSTERS_CONFIG_FILE, 'utf8');
 	try {
+		const rawData = FS.readFileSync(env.CLUSTERS_CONFIG_FILE, 'utf8');
 		const jsn = JSON.parse(rawData);
 		// const jsn = [];
 		return res.status(200).json(jsn);

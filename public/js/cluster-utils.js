@@ -80,7 +80,7 @@ function generateCluster(clusterConfig, parentNode, expanded = false, whiteBorde
 			th.className = `w-3 aspect-square sm:w-8 relative`;
 		} else {
 			const div = document.createElement(`div`);
-			div.className = `${clusterConfig.spacerColumns.includes(i) && clusterConfig.spacerColumns.length > 1 ? "w-3 sm:w-5" : "w-full"} font-extrabold`;
+			div.className = `${clusterConfig.spacerColumns.includes(i) && clusterConfig.spacerColumns.length > 1 ? !expanded ?  "w-3 sm:w-5" : "w-12 sm:w-20" : "w-full"} font-extrabold`;
 			div.textContent = !clusterConfig.spacerColumns.includes(i) ? `P${p++}` : ``;
 			th.append(div);
 		}
@@ -105,7 +105,7 @@ function generateCluster(clusterConfig, parentNode, expanded = false, whiteBorde
 					div.textContent = `R${row}`;
 				}
 				else {
-					div.className = clusterConfig.spacerColumns.length > 1 && !expanded ? `w-3 sm:w-5` : `w-5 sm:w-10`;
+					div.className = clusterConfig.spacerColumns.length > 1 && !expanded ? `w-3 sm:w-5` : `w-12 sm:w-20`;
 				}
 				td.append(div);
 				tr.append(td);

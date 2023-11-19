@@ -44,7 +44,7 @@ function fetchClusters() {
 				return;
 			}
 			CLUSTER_TABLES = [];
-			CLUSTERS.forEach(c => generateCluster(c, CLUSTERS_SECTION));
+			CLUSTERS.forEach(c => generateCluster(c, CLUSTERS_SECTION, false, false));
 			fetchPeers();
 		})
 		.catch(err => {

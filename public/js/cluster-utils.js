@@ -72,7 +72,7 @@ function generateCluster(clusterConfig, parentNode, expanded = false, whiteBorde
 
 	const thead = document.createElement(`thead`);
 	const theadTr = document.createElement(`tr`);
-	theadTr.className = `text-xs text-center xs:text-sm sm:text-base`;
+	theadTr.className = ` ${expanded ? `text-sm xs:text-base sm:text-3xl` : `text-xs text-center xs:text-sm sm:text-base`}`;
 	let p = 1;
 	for (let i = 0; i < clusterConfig.columns + 1; i++) {
 		const th = document.createElement(`th`);
@@ -101,7 +101,7 @@ function generateCluster(clusterConfig, parentNode, expanded = false, whiteBorde
 			if (i === 0 || clusterConfig.spacerColumns.includes(i)) {
 				const div = document.createElement(`div`);
 				if (i === 0) {
-					div.className = `w-5 h-5 text-xs font-extrabold text-center xs:text-sm sm:text-base`;
+					div.className = `w-5 h-5 text-xs font-extrabold text-center ${expanded ? `xs:text-base sm:text-3xl` : `xs:text-sm sm:text-base`}`;
 					div.textContent = `R${row}`;
 				}
 				else {
@@ -118,7 +118,11 @@ function generateCluster(clusterConfig, parentNode, expanded = false, whiteBorde
 			const pcSvg = document.importNode(PC_TEMPLATE.content, true);
 			if (clusterConfig.isWeird) {
 				const rotation = clusterConfig.rotations[row][pc - 1] ? "rotate-180" : "rotate-0";
-				pcSvg.childNodes.forEach(el => el.nodeType === 1 ? el.classList.add(rotation) : null);
+				pcSvg.childNodes.forEach(el => {
+					if (el.nodeType === 1){
+						el.classList.add(rotation)
+					}
+				});
 			}
 
 			const p = document.createElement(`p`);

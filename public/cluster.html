@@ -9,7 +9,8 @@
 		<link rel="stylesheet" href="styles.css">
 	</head>
 	<body class="relative flex flex-col justify-center w-full bg-zinc-800 text-neutral-200">
-		<div style="background-image: url('images/wallpaper.jpg'); background-repeat: no-repeat; background-size: cover;" class="absolute top-0 left-0 w-full h-full opacity-50"></div>
+		<div style="background-image: url('images/wallpaper.jpg'); background-repeat: no-repeat; background-size: cover;" class="absolute top-0 left-0 z-10 w-full h-full blur"></div>
+		<div class="absolute top-0 left-0 z-20 w-full h-full bg-white/5"></div>
 
 		<dialog id="msg" class="fixed top-0 left-0 z-50 flex-col items-center hidden w-full h-full p-4 text-white bg-neutral-950">
 			<header class="flex justify-end w-full h-8">
@@ -26,8 +27,7 @@
 				<button onclick="window.location.reload()" class="flex justify-center p-2 text-2xl border rounded-md hover:bg-slate-950">REFRESH PAGE</button>
 			</footer>
 		</dialog>
-		<main id="main"
-			class="relative flex items-center justify-center w-full h-full">
+		<main id="main" class="relative z-40 flex items-center justify-center w-full h-full">
 
 			<section id="tab-clusters"
 				class="flex justify-center text-center">
@@ -38,17 +38,17 @@
 
 
 		<template data-template="pc">
-			<svg data-svg="pc" viewBox="0 0 1400 980" xmlns="http://www.w3.org/2000/svg" class="w-full scale-90">
+			<svg data-svg="pc" viewBox="0 0 1400 980" fill="#000" xmlns="http://www.w3.org/2000/svg" class="w-full scale-90">
 				<rect />
 				<path d="M57.16 49.67h133.38l-1.01 94.78-131.7.67-.67-95.45Z" transform="matrix(7.05187 0 0 7.05187 -176.33 -197.43)" data-pc-fill class="fill-neutral-800" />
-				<path fill="none"
+				<path data-pc-border fill="#000"
 					d="M382 869c-.98 9.14-8.8 41.23-10 48h-58c-5.31-.02-10.87-1.07-15.91 1.12-7.07 3.06-10 10.67-10.09 17.88v45c.01 6.48.86 15.69 8.02 18.4 1.87.71 399.98.6 399.98.6 11.31-.02 14.94-4.98 15-16v-48c-.02-8.07-2-14.41-10.09-17.88-5.17-2.23-11.38-1.13-16.91-1.12h-56l-10-48c13.89.65 104 1 104 1h225c7.64-.01 6.06-.21 12.91-2.7 17.23-6.27 29.54-17.04 36.29-34.3 2.67-6.84 3.79-9.61 3.8-17V187c-.05-26.38-25.14-53.95-52-54H51c-25.24.05-50.7 25.91-51 51v632c.04 24.41 16.76 43.04 39 51.01 7.52 2.7 5.57 2.98 14 2.99h223s80.58-.16 106-1Zm583-136H67l-33 1V199c.03-19.86 8.88-29.96 29-30h874c18.71.03 27.96 10.46 28 29v535ZM35 769l31 1h899v34c-.03 17.13-7.88 28.7-26 29H62c-4.97-.01-4.58.18-9.28-1.27-3.99-1.24-5.08-.76-8.8-3.49C32.3 819.73 34 802.75 34 790c0-5.28-.76-16.56 1-21Zm441.46 14.72c-17.24 9.11-13.27 36.14 7.54 36.11h30c2.2.17 4.89.26 7 0 14.75-4.42 17.31-24.17 6.02-33.36-4.44-3.62-6.6-3.46-12.02-3.47l-38.54.72ZM581 869l10 48H409l9-48 37 1h103l23-1Zm94 84v14H324v-14h351Z"
 					style="fill:#000;stroke-width:0;fill-opacity:1" transform="matrix(.98 0 0 .98 210 0)" />
 			</svg>
 		</template>
-		<!-- ?LOADING -->
+		<!-- TODO ?LOADING PROBABLY NOT NEEDED HERE -->
 		<div class="fixed z-50 flex items-center justify-center w-screen overflow-hidden h-myscreen backdrop-brightness-50" id="loading" role="status">
-			<svg aria-hidden="true" style="width: 24px; height:24px;" class="w-24 h-24 text-neutral-800 animate-spin fill-cyan-600" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<svg aria-hidden="true" style="width: 24px; height:24px;" class="!w-24 !h-24 text-neutral-800 animate-spin fill-green-700" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
 				<path
 					d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
 					fill="currentColor" />
@@ -68,6 +68,7 @@
 		<script src="cluster.js"></script>
 
 		<script src="js/postload-events.js"></script>
-		<span class="sr-only fill-neutral-900"></span>
+		<span class="sr-only fill-neutral-900 "></span>
+		<span class="sr-only fill-zinc-900"></span>
 	</body>
 </html>

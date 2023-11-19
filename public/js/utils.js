@@ -51,6 +51,8 @@ function getIntraProfileLink(username) {
  * @return {boolean}
  */
 function isSearchValueIncluded(string) {
+	if (!SEARCH_INPUT)
+		return false;
 	const text = SEARCH_INPUT.value.toLowerCase();
 	if (text == '')
 		return false;

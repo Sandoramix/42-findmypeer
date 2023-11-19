@@ -3,7 +3,7 @@ const CLUSTERS_SECTION = document.querySelector(`#tab-clusters`);
 /**@type {undefined | HTMLTableElement[]} */
 var CLUSTER_TABLES = undefined;
 
-function updateCluster() {
+function updateCluster(expanded = false) {
 	if (!CLUSTERS)
 		return;
 
@@ -34,7 +34,8 @@ function updateCluster() {
 				usernameP.setAttribute(`data-username`, usernameP.textContent);
 				usernameP.classList.toggle(`!text-neutral-600`, !user);
 
-				// userLink.classList.toggle(`!font-medium`, false);
+				userLink.classList.toggle(`!font-medium`, expanded);
+				usernameP.classList.toggle(`!font-medium`, expanded);
 				userLink.referrerPolicy = 'noreferrer';
 				userLink.target = user ? `_blank` : ``;
 				userLink.href = user ? `https://profile.intra.42.fr/users/${user.username}` : `#`;
@@ -56,19 +57,18 @@ function updateCluster() {
 
 
 
-function generateCluster(clusterConfig, parentNode) {
-
+function generateCluster(clusterConfig, parentNode, expanded = false, whiteBorder = false) {
 	const fieldset = document.createElement(`fieldset`);
 	fieldset.setAttribute(`data-cluster`, clusterConfig.id);
-	fieldset.className = `flex justify-center w-full p-1 border-t border-b xl: max-w-7xl xl:border xl:rounded-lg shrink-0 border-neutral-950 ${clusterConfig.isWeird ? `weird` : ``}`;
+	fieldset.className = `flex justify-center w-full p-1  xl: ${expanded ? `` : `max-w-7xl xl:border xl:rounded-lg border-t border-b`} shrink-0 ${whiteBorder ? ` border-neutral-200/50` : `border-neutral-950`} ${clusterConfig.isWeird ? `weird` : ``}`;
 
 	const legend = document.createElement(`legend`);
 	legend.className = "w-[20ch]";
-	legend.innerHTML = `<div class="font-bold text-sm flex-nowrap whitespace-nowrap flex justify-center items-center gap-2"><h3>Cluster ${clusterConfig.id}</h3><h3>|</h3><h3>${clusterConfig.name}</h3></div>`;
+	legend.innerHTML = `<div class="font-mono font-bold ${expanded ? `text-sm sm:text-3xl mb-8` : `text-sm`} flex-nowrap whitespace-nowrap flex justify-center items-center gap-2"><h3>Cluster ${clusterConfig.id}</h3><h3>|</h3><h3>${clusterConfig.name}</h3></div>`;
 
 	const table = document.createElement(`table`);
 	table.setAttribute(`data-table-of-cluster`, clusterConfig.id);
-	table.className = `w-full grow ${clusterConfig.columns > 14 ? "text-xxxs sm:text-xxs md:text-xs xl:text-sm 2xl:text-base" : "text-xxxs xs-sm:text-xxxm md:text-xs xl:text-sm 2xl:text-base"}`;
+	table.className = `w-full grow ${expanded ? `text-xxxs sm:text-xxs  xl:text-sm 2xl:text-base` : clusterConfig.columns > 14 ? "text-xxxs sm:text-xxs md:text-xs xl:text-sm 2xl:text-base" : "text-xxxs xs-sm:text-xxxm md:text-xs xl:text-sm 2xl:text-base"}`;
 
 	const thead = document.createElement(`thead`);
 	const theadTr = document.createElement(`tr`);
@@ -105,13 +105,13 @@ function generateCluster(clusterConfig, parentNode) {
 					div.textContent = `R${row}`;
 				}
 				else {
-					div.className = clusterConfig.spacerColumns.length > 1 ? `w-3 sm:w-5` : `w-5 sm:w-10`;
+					div.className = clusterConfig.spacerColumns.length > 1 && !expanded ? `w-3 sm:w-5` : `w-5 sm:w-10`;
 				}
 				td.append(div);
 				tr.append(td);
 				continue;
 			}
-			td.className = `pc relative ${row > 1 ? "border-b border-neutral-950/50" : ""}`;
+			td.className = `pc relative ${row > 1 ? `border-b ${whiteBorder ? `border-neutral-300/40` : `border-neutral-950/50`}` : ""}`;
 			const a = document.createElement(`a`);
 			a.className = `flex flex-col items-center justify-center w-full`;
 

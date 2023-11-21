@@ -7,7 +7,8 @@ This is a local web application created for 42 students at 42Firenze to locate t
 You can find your peer either from:
 
 - [x] Table
-- [x] Graphical representation of clusters.
+- [x] Graphical rapresentation of clusters.
+- [x] Graphical rapresentation of each cluster on a single page.
 
 The search bar is useful for filtering peers by their intra's nickname or by filtering the cluster position (c`<cluster>`r`<row>`p`<pc>`).
 

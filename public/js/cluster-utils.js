@@ -50,6 +50,8 @@ function updateCluster(expanded = false) {
 
 				if (!user)
 					pcSvgFill.style.fill = colors.inactive.default;
+				if (!user && (isUserMatched || isClusterMatched) && colors.empty && colors.empty.matched)
+					pcSvgFill.style.fill = colors.empty.matched;
 			});
 		});
 	});
@@ -64,6 +66,7 @@ function generateCluster(clusterConfig, parentNode, expanded = false, whiteBorde
 
 	const legend = document.createElement(`legend`);
 	legend.className = "w-[20ch]";
+	legend.setAttribute('align', 'center')
 	legend.innerHTML = `<div class="font-mono font-bold ${expanded ? `text-sm sm:text-3xl mb-8` : `text-sm`} flex-nowrap whitespace-nowrap flex justify-center items-center gap-2"><h3>Cluster ${clusterConfig.id}</h3><h3>|</h3><h3>${clusterConfig.name}</h3></div>`;
 
 	const table = document.createElement(`table`);

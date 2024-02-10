@@ -12,7 +12,10 @@
 		},
 		"inactive":{
 		  "default":"#242424",
-		  "matched":"#666"
+		  "matched":"#555"
+		},
+		"empty": {
+			"matched":"#333"
 		}
 	  },
 	  "isWeird":true,
@@ -38,7 +41,10 @@
 		},
 		"inactive":{
 		  "default":"#242424",
-		  "matched":"#505050"
+		  "matched":"#555"
+		},
+		"empty": {
+			"matched":"#333"
 		}
 	  },
 	  "isWeird":false,

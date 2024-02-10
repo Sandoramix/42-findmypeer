@@ -51,7 +51,9 @@ function fetchClusters() {
 			if (FETCH_RETRIES.clusters++ < MAX_RETRIES) {
 				return fetchClusters();
 			}
-			return showMessage("Server is not reachable, try again later", true);
+			showMessage("Server is not reachable, try again later", true);
+			updateLoading(false);
+			return;
 		});
 }
 fetchClusters();

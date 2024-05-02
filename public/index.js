@@ -17,7 +17,7 @@ FORM.addEventListener(`submit`, (ev) => {
 function fetchPeers() {
 	// TODO REPLACE TO: document.location.origin
 	updateLoading(true);
-	fetch(`${document.location.origin}/peers`, { method: 'GET' })
+	fetch(`${document.location.origin}/api/peers`, { method: 'GET' })
 		.then(res => res.json())
 		.then(data => {
 			const { users, refreshAt } = data;
@@ -34,7 +34,7 @@ function fetchPeers() {
 
 function fetchClusters() {
 	updateLoading(true);
-	fetch(`${document.location.origin}/clusters`, { method: 'GET' })
+	fetch(`${document.location.origin}/api/clusters`, { method: 'GET' })
 		.then(res => res.json())
 		.then(data => {
 			CLUSTERS = data ?? [];

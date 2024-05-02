@@ -6,24 +6,42 @@ const HTTP = require("http");
 const HTTPS = require('https');
 
 
+function padNumber(n, padCount = 2) {
+	return n.toString().padStart(padCount, "0");
+}
+function craftBackendQuery() {
+	// Date 1 minute before this moment.
+	const date = new Date(Date.now() - 1000 * 60);
+	const year = date.getFullYear();
+	const month = padNumber(date.getMonth() + 1);
+	const day = padNumber(date.getDate());
+	const hour = padNumber(date.getHours());
+	const minute = padNumber(date.getMinutes());
+	const query = `${env.BACKEND_PEERS_ENDPOINT}?datetime=${year}-${month}-${day} ${hour}:${minute}`;
+	return query;
+}
+
 const app = EXPRESS();
 const cors = CORS();
 
 app.use(cors);
 app.options("*", cors);
 
-app.use('/api/peers', (req, res) => {
-	const rawData = FS.readFileSync(env.WHOCACHE_FILE, 'utf8');
-	const users = rawData.split('\n').map(u => {
-		const [username] = u.split(` - `);
-		const rawSplit = u.split(` - `);
-		const raw = rawSplit[rawSplit.length - 1];
-		if (!username || !raw)
-			return (null);
-		const cluster = parseInt(raw.split('c')[1]);
-		const row = parseInt(raw.split('r')[1]);
-		const pc = parseInt(raw.split('p')[1]);
-		return { username, position: { raw, cluster, row, pc } };
+app.use('/api/peers', async (req, res) => {
+
+	const fetchedReq = await fetch(craftBackendQuery());
+	if (!fetchedReq.ok) {
+		return res.status(500).statusMessage("Internal server error. Try again later");
+	}
+	const fetchedData = await fetchedReq.json();
+	console.log({ fetchedData });
+	const users = fetchedData.map(u => {
+		const username = u.username;
+		const position = u.hostname;
+		return {
+			username,
+			position
+		};
 	}).filter(u => u && u.username && u.position);
 
 	const nowD = new Date();
@@ -86,7 +104,6 @@ function listenServer(server, port, https = false) {
 
 const httpServer = HTTP.createServer(app);
 const httpsServer = HTTPS.createServer({ key: env.PRIVATE_KEY_FILE, cert: env.CERTIFICATE_FILE }, app);
-
 
 listenServer(httpServer, env.HTTP_PORT, false);
 listenServer(httpsServer, env.HTTPS_PORT, true);

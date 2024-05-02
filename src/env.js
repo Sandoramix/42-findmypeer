@@ -15,22 +15,22 @@ var env = {
 	API_REFRESH_SECONDS: +penv['API_REFRESH_SECONDS'],
 
 	CLUSTERS_CONFIG_FILE: penv['CLUSTERS_CONFIG_FILE'],
-	WHOCACHE_FILE: penv['WHOCACHE_FILE'],
+	BACKEND_PEERS_ENDPOINT: penv['BACKEND_PEERS_ENDPOINT'],
 };
 
-let errors = []
+let errors = [];
 
-Object.entries(env).forEach(([xName, x])=>{
-	if (x === undefined){
-		errors.push(xName)
+Object.entries(env).forEach(([xName, x]) => {
+	if (x === undefined) {
+		errors.push(xName);
 	}
-})
+});
 
-if (errors.length > 0){
+if (errors.length > 0) {
 	console.log(`Configuration file error: missing or invalid values of the following variables: ${errors.join(`, `)}`);
 	exit(1);
 }
 
-module.exports={
+module.exports = {
 	env
-}
+};

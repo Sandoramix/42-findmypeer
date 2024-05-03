@@ -34,7 +34,6 @@ app.use('/api/peers', async (req, res) => {
 		return res.status(500).statusMessage("Internal server error. Try again later");
 	}
 	const fetchedData = await fetchedReq.json();
-	console.log({ fetchedData });
 	const users = fetchedData.map(u => {
 		const username = u.username;
 		const position = u.hostname;

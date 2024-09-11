@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+	<style>
+		* {
+			padding: 0px;
+			margin: 0px;
+			box-sizing: border-box;
+		}
+
+		body {
+			height: 100dvh;
+		}
+	</style>
+</head>
+
+<body>
+	<template style="display: none;">
+		<svg id="svg" viewBox="0 0 1400 980" xmlns="http://www.w3.org/2000/svg" class="h-full">
+			<rect />
+			<path class=" st0" d="M57.16 49.67h133.38l-1.01 94.78-131.7.67-.67-95.45Z"
+				transform="matrix(7.05187 0 0 7.05187 -176.33 -197.43)" style="fill:#8a888c" />
+			<path fill="none"
+				d="M382 869c-.98 9.14-8.8 41.23-10 48h-58c-5.31-.02-10.87-1.07-15.91 1.12-7.07 3.06-10 10.67-10.09 17.88v45c.01 6.48.86 15.69 8.02 18.4 1.87.71 399.98.6 399.98.6 11.31-.02 14.94-4.98 15-16v-48c-.02-8.07-2-14.41-10.09-17.88-5.17-2.23-11.38-1.13-16.91-1.12h-56l-10-48c13.89.65 104 1 104 1h225c7.64-.01 6.06-.21 12.91-2.7 17.23-6.27 29.54-17.04 36.29-34.3 2.67-6.84 3.79-9.61 3.8-17V187c-.05-26.38-25.14-53.95-52-54H51c-25.24.05-50.7 25.91-51 51v632c.04 24.41 16.76 43.04 39 51.01 7.52 2.7 5.57 2.98 14 2.99h223s80.58-.16 106-1Zm583-136H67l-33 1V199c.03-19.86 8.88-29.96 29-30h874c18.71.03 27.96 10.46 28 29v535ZM35 769l31 1h899v34c-.03 17.13-7.88 28.7-26 29H62c-4.97-.01-4.58.18-9.28-1.27-3.99-1.24-5.08-.76-8.8-3.49C32.3 819.73 34 802.75 34 790c0-5.28-.76-16.56 1-21Zm441.46 14.72c-17.24 9.11-13.27 36.14 7.54 36.11h30c2.2.17 4.89.26 7 0 14.75-4.42 17.31-24.17 6.02-33.36-4.44-3.62-6.6-3.46-12.02-3.47l-38.54.72ZM581 869l10 48H409l9-48 37 1h103l23-1Zm94 84v14H324v-14h351Z"
+				style="fill:#000;stroke-width:0;fill-opacity:1" transform="matrix(.98 0 0 .98 210 0)" />
+		</svg>
+	</template>
+
+	<canvas id="cnv" style="width: 1920px; height: 1080px;"></canvas>
+	<script>
+		function getClusters() {
+
+			return [
+				{
+					"id": 1,
+					"name": "Wakanda",
+					"rows": 6,
+					"columns": 13,
+					"spacerColumns": [7],
+					"pcColors": {
+						"active": {
+							"default": "#095800",
+							"matched": "#b88d00"
+						},
+						"inactive": {
+							"default": "#242424",
+							"matched": "#555"
+						},
+						"empty": {
+							"matched": "#333"
+						}
+					},
+					"isWeird": true,
+					"rotations": {
+						"1": [1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1],
+						"2": [1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1],
+						"3": [0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0],
+						"4": [1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1],
+						"5": [0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0],
+						"6": [1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1]
+					}
+				},
+				{
+					"id": 2,
+					"name": "Nidavellir",
+					"rows": 6,
+					"columns": 15,
+					"spacerColumns": [4, 10],
+					"pcColors": {
+						"active": {
+							"default": "#095800",
+							"matched": "#b88d00"
+						},
+						"inactive": {
+							"default": "#242424",
+							"matched": "#555"
+						},
+						"empty": {
+							"matched": "#333"
+						}
+					},
+					"isWeird": false,
+					"rotations": null
+				}
+			]
+		}
+
+		function getUsers() {
+
+			return {
+				users: [
+					{
+						"username": "mruggier",
+						"position": {
+							"cluster": 1,
+							"row": 6,
+							"pc": 4,
+							"raw": "c1r6p4"
+						}
+					},
+					{
+						"username": "ciusca",
+						"position": {
+							"cluster": 1,
+							"row": 4,
+							"pc": 3,
+							"raw": "c1r4p3"
+						}
+					},
+					{
+						"username": "abettini",
+						"position": {
+							"cluster": 1,
+							"row": 6,
+							"pc": 8,
+							"raw": "c1r6p8"
+						}
+					},
+					{
+						"username": "odudniak",
+						"position": {
+							"cluster": 2,
+							"row": 1,
+							"pc": 2,
+							"raw": "c2r1p2"
+						}
+					},
+					{
+						"username": "rnaldi",
+						"position": {
+							"cluster": 2,
+							"row": 5,
+							"pc": 1,
+							"raw": "c2r5p1"
+						}
+					},
+					{
+						"username": "aeid",
+						"position": {
+							"cluster": 2,
+							"row": 5,
+							"pc": 13,
+							"raw": "c2r5p13"
+						}
+					},
+					{
+						"username": "gsapio",
+						"position": {
+							"cluster": 1,
+							"row": 3,
+							"pc": 4,
+							"raw": "c1r3p4"
+						}
+					},
+					{
+						"username": "adonato",
+						"position": {
+							"cluster": 2,
+							"row": 5,
+							"pc": 6,
+							"raw": "c2r5p6"
+						}
+					},
+					{
+						"username": "cpopolan",
+						"position": {
+							"cluster": 1,
+							"row": 6,
+							"pc": 10,
+							"raw": "c1r6p10"
+						}
+					},
+					{
+						"username": "craimond",
+						"position": {
+							"cluster": 1,
+							"row": 3,
+							"pc": 2,
+							"raw": "c1r3p2"
+						}
+					},
+					{
+						"username": "gfantech",
+						"position": {
+							"cluster": 1,
+							"row": 6,
+							"pc": 5,
+							"raw": "c1r6p5"
+						}
+					},
+					{
+						"username": "rpaic",
+						"position": {
+							"cluster": 2,
+							"row": 3,
+							"pc": 2,
+							"raw": "c2r3p2"
+						}
+					},
+					{
+						"username": "mapichec",
+						"position": {
+							"cluster": 2,
+							"row": 3,
+							"pc": 4,
+							"raw": "c2r3p4"
+						}
+					},
+					{
+						"username": "adapassa",
+						"position": {
+							"cluster": 2,
+							"row": 3,
+							"pc": 8,
+							"raw": "c2r3p8"
+						}
+					},
+					{
+						"username": "lmicheli",
+						"position": {
+							"cluster": 1,
+							"row": 6,
+							"pc": 6,
+							"raw": "c1r6p6"
+						}
+					},
+					{
+						"username": "negambar",
+						"position": {
+							"cluster": 2,
+							"row": 6,
+							"pc": 7,
+							"raw": "c2r6p7"
+						}
+					},
+					{
+						"username": "tschetti",
+						"position": {
+							"cluster": 2,
+							"row": 6,
+							"pc": 5,
+							"raw": "c2r6p5"
+						}
+					},
+					{
+						"username": "kelemayi",
+						"position": {
+							"cluster": 2,
+							"row": 3,
+							"pc": 3,
+							"raw": "c2r3p3"
+						}
+					}
+				]
+			};
+		}
+	</script>
+
+	<script type="module">
+		const urlParams = new URLSearchParams(window.location.search);
+		const id = urlParams.get("id") ?? 1;
+
+		const width = 1920;
+		const height = 1080;
+
+		const padding = 20;
+		const paddingHalf = padding / 2;
+		const rowPadding = 10;  // Padding between rows
+		const usernameTextHeight = 16;  // Height for username text
+
+		var canvas = document.querySelector(`canvas`);
+		canvas.width = width;
+		canvas.height = height;
+		var ctx = canvas.getContext("2d");
+
+		const svgReq = await fetch("images/pc.svg");
+		const svgBlob = await svgReq.blob();
+		const svg = new Image();
+		svg.src = URL.createObjectURL(svgBlob);
+		const svgWidth = 130, svgHeight = 91;
+
+		const usersData = getUsers();
+		setTimeout(() => {
+			createClusterImage(getClusters()[id], usersData.users, svg);
+		}, 50);
+
+		const availableWidth = width - 2 * padding;  // Apply padding only for canvas
+		const availableHeight = height - 2 * padding;
+
+		async function createClusterImage(cluster, users, svgImage) {
+			const clusterWidth = cluster.columns * svgWidth;
+			const clusterHeight = cluster.rows * (svgHeight + rowPadding);  // Include row padding in height
+
+			const scaleX = availableWidth / clusterWidth;
+			const scaleY = availableHeight / clusterHeight;
+
+			const scale = Math.min(scaleX, scaleY);
+
+			const scaledClusterWidth = clusterWidth * scale;
+			const scaledClusterHeight = clusterHeight * scale;
+
+			const xOffset = (width - scaledClusterWidth) / 2;
+			const yOffset = (height - scaledClusterHeight) / 2;
+
+			// Fill background
+			ctx.fillStyle = '#CCCCCC';
+			ctx.fillRect(0, 0, width, height);
+
+			drawCluster(ctx, cluster, users, xOffset, yOffset, svgImage, scale);
+		}
+
+		/** @param ctx {CanvasRenderingContext2D} */
+		function drawCluster(ctx, cluster, users, xOffset, yOffset, svgImage, scale) {
+			const rowHeight = svgHeight * scale;
+			const columnWidth = svgWidth * scale;
+			const headerHeight = 30; // Height for headers
+			const headerOffsetX = xOffset; // Offset for headers horizontally
+			const headerOffsetY = yOffset - headerHeight; // Offset for headers vertically
+
+			// Draw row headers
+			ctx.fillStyle = '#000000';
+			ctx.font = `16px Arial`;
+			ctx.textAlign = 'center';
+			for (let row = 0; row < cluster.rows; row++) {
+				// Draw row numbers starting from the bottom (bottom-most row should be R1)
+				ctx.fillText(`R${cluster.rows - row}`, headerOffsetX - 20, yOffset + row * (rowHeight + rowPadding) + rowHeight / 2);
+			}
+
+			// Draw column headers
+			ctx.textAlign = 'center';
+			let pcCounter = 1;
+			for (let col = 0; col < cluster.columns; col++) {
+				const isSpacer = cluster.spacerColumns.includes(col + 1);
+				if (!isSpacer) {
+					ctx.fillText(`P${pcCounter}`, headerOffsetX + col * columnWidth + columnWidth / 2, headerOffsetY + headerHeight / 2);
+					pcCounter++;
+				}
+			}
+
+			// Draw each row and position PCs
+			for (let row = 0; row < cluster.rows; row++) {
+				let pcCounter = 1;
+				for (let col = 0; col < cluster.columns; col++) {
+					const isSpacer = cluster.spacerColumns.includes(col + 1);
+					if (isSpacer) {
+						continue;  // Skip drawing for spacers
+					}
+
+					const pcX = xOffset + col * columnWidth;
+					const pcY = yOffset + (cluster.rows - 1 - row) * (rowHeight + rowPadding);
+
+					let color = cluster.pcColors.empty.matched;
+
+					// Find user sitting at this PC
+					const user = users.find(user =>
+						user.position.cluster === cluster.id &&
+						user.position.row === row + 1 &&
+						user.position.pc === pcCounter
+					);
+
+					if (user) {
+						color = cluster.pcColors.active.default;
+						console.log({ user, row, col, pcCounter })
+					}
+
+					ctx.save();
+
+					const shouldRotate = cluster.isWeird
+						? cluster.rotations[row]?.[col] === 1
+						: (pcCounter % 2 !== 0); // Default rotation behavior for odd columns
+
+					if (shouldRotate) {
+						// Rotate the PC by 180 degrees (flip vertically)
+						ctx.translate(pcX + columnWidth / 2, pcY + rowHeight / 2);
+						ctx.rotate(Math.PI);
+						ctx.translate(-columnWidth / 2, -rowHeight / 2);
+
+						// Draw the rotated SVG
+						ctx.drawImage(svgImage, 0, 0, columnWidth, rowHeight);
+					} else {
+						// Draw the non-rotated SVG
+						ctx.drawImage(svgImage, pcX, pcY, columnWidth, rowHeight);
+					}
+					if (user?.username == "odudniak"){
+						console.table({pcX, pcY, columnWidth, rowHeight, row, col});
+					}
+
+					ctx.restore();
+					ctx.save();
+					if (user) {
+						ctx.fillStyle = '#000000';
+						ctx.font = `${16 * scale}px Arial`;
+						if (shouldRotate) {
+							// Username above rotated PC
+							ctx.fillText(user.username, pcX + columnWidth / 2, pcY - 5 * scale);
+						} else {
+							// Username below non-rotated PC
+							ctx.fillText(user.username, pcX + columnWidth / 2, pcY + rowHeight + 16 * scale);
+						}
+					}
+					ctx.restore();
+
+					pcCounter++;
+				}
+			}
+
+			// Draw the cluster name above all PCs
+			ctx.fillStyle = '#000000';
+			ctx.font = `${24 * scale}px Arial`;
+			ctx.textAlign = 'center';
+			ctx.fillText(cluster.name, xOffset + (cluster.columns * columnWidth) / 2, headerOffsetY - 10);
+		}
+
+
+
+
+	</script>
+
+</body>
+
+</html>

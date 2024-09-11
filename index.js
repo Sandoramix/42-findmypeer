@@ -28,10 +28,14 @@ app.use(cors);
 app.options("*", cors);
 
 app.use('/api/peers', async (req, res) => {
-
-	const fetchedReq = await fetch(craftBackendQuery());
-	if (!fetchedReq.ok) {
-		return res.status(500).statusMessage("Internal server error. Try again later");
+	let fetchedReq = null;
+	try {
+		fetchedReq = await fetch(craftBackendQuery());
+	} catch (error) {
+		return res.status(500).jsonp("Internal server error. Try again later");
+	}
+	if (!fetchedReq || !fetchedReq.ok) {
+		return res.status(500).jsonp("Internal server error. Try again later");
 	}
 	const fetchedData = await fetchedReq.json();
 	const users = fetchedData.map(u => {

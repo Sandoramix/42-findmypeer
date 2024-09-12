@@ -172,11 +172,11 @@ clusterRouter.get(`/:id/generate`, async (req, res) => {
 		}
 
 		// Draw the cluster name above all PCs
-		const clusterFontSize = 40;
+		const clusterFontSize = 50;
 		ctx.fillStyle = '#ffffff';
 		ctx.font = `700 ${clusterFontSize}px arial`;
 		ctx.textAlign = 'center';
-		ctx.fillText(cluster.name, xOffset + (cluster.columns * columnWidth) / 2, clusterFontSize + clusterFontSize / 2);
+		ctx.fillText(`Cluster ${cluster.id} || ${cluster.name}`, xOffset + (cluster.columns * columnWidth) / 2, clusterFontSize + clusterFontSize / 2);
 
 		// Credits
 		ctx.fillStyle = "#ccc";

@@ -118,8 +118,6 @@ clusterRouter.get(`/:id/generate`, async (req, res) => {
 				const pcX = xOffset + col * columnWidth;
 				const pcY = yOffset + (cluster.rows - 1 - row) * (rowHeight + rowPadding);
 
-				let color = cluster.pcColors.empty.matched;
-
 				// Find user sitting at this PC
 				const user = users.find(user =>
 					user.position.cluster === cluster.id &&
@@ -128,10 +126,6 @@ clusterRouter.get(`/:id/generate`, async (req, res) => {
 				);
 				const svgToDraw = user ? pcSvgActive : pcSvg;
 
-				if (user) {
-					color = cluster.pcColors.active.default;
-					console.log({ user, row, col, pcCounter });
-				}
 
 				ctx.save();
 
@@ -151,9 +145,6 @@ clusterRouter.get(`/:id/generate`, async (req, res) => {
 				} else {
 					// Draw the non-rotated SVG
 					ctx.drawImage(svgToDraw, pcX, pcY, columnWidth, rowHeight);
-				}
-				if (user?.username == "odudniak") {
-					console.table({ pcX, pcY, columnWidth, rowHeight, row, col });
 				}
 
 				ctx.restore();

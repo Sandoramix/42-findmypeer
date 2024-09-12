@@ -185,7 +185,7 @@ clusterRouter.get(`/:id/generate`, async (req, res) => {
 		ctx.fillStyle = '#ffffff';
 		ctx.font = `700 ${clusterFontSize}px arial`;
 		ctx.textAlign = 'center';
-		ctx.fillText(cluster.name, xOffset + (cluster.columns * columnWidth) / 2, clusterFontSize);
+		ctx.fillText(cluster.name, xOffset + (cluster.columns * columnWidth) / 2, clusterFontSize + clusterFontSize / 2);
 
 		// Credits
 		ctx.fillStyle = "#ccc";

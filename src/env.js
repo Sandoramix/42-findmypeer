@@ -1,11 +1,12 @@
-const FS = require("fs");
-const DOTENV = require("dotenv");
-const { exit } = require("process");
+
+import * as FS from "fs";
+import * as DOTENV from "dotenv";
+import { exit } from "process";
 
 DOTENV.config();
 const penv = process.env;
 
-var env = {
+export const env = {
 	PRIVATE_KEY_FILE: FS.readFileSync(penv['PRIVATE_KEY_FILE'], 'utf8'),
 	CERTIFICATE_FILE: FS.readFileSync(penv['CERTIFICATE_FILE'], 'utf8'),
 
@@ -30,7 +31,3 @@ if (errors.length > 0) {
 	console.log(`Configuration file error: missing or invalid values of the following variables: ${errors.join(`, `)}`);
 	exit(1);
 }
-
-module.exports = {
-	env
-};

@@ -10,7 +10,22 @@ You can find your peer either from:
 - [x] Graphical rapresentation of clusters.
 - [x] Graphical rapresentation of each cluster on a single page.
 
-The search bar is useful for filtering peers by their intra's nickname or by filtering the cluster position (c`<cluster>`r`<row>`p`<pc>`).
+The search bar is very permissive.
+It makes a partial lookup on these informations:
+
+- Intra username
+- Cluster position _c`<id>`r`<row>`p`<pc>`_ (e.g. `c1r2p3`, `c1`, `r2` or `p3`)
+
+## Routes
+
+- `/` : Homepage + where there is table and graphical rappresentation of clusters
+- `/cluster?id=<cluster_id>` : Graphical rappresentation of a single cluster. If `id` is invalid or not provided, you'll get redirected to homepage
+
+### API Endpoints
+- **[GET]** `/api/peers/` : get information about all peers locations
+- **[GET]** `/api/clusters/` : get all clusters configurations
+- **[GET]** `/api/clusters/<:id>` : get the cluster's configuration
+- **[GET}** `/api/clusters/<cluster_id>/generate` : download the image of a single cluster's graphical rappresentation.
 
 ## Getting Started
 

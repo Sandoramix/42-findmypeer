@@ -10,6 +10,11 @@ You can find your peer either from:
 - [x] Graphical rapresentation of clusters.
 - [x] Graphical rapresentation of each cluster on a single page.
 
+## Routes
+
+- `/` : Homepage + where there is table and graphical rappresentation of clusters
+- `/cluster?id=<cluster_id>` : Graphical rappresentation of a single cluster. 
+
 The search bar is useful for filtering peers by their intra's nickname or by filtering the cluster position (c`<cluster>`r`<row>`p`<pc>`).
 
 ## Getting Started

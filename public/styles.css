@@ -446,6 +446,30 @@ video {
   display: none;
 }
 
+@font-face {
+  font-family: 'futura-bold';
+
+  font-display: swap;
+
+  src: url(/fonts/futura-bold.ttf) format('ttf');
+}
+
+@font-face {
+  font-family: 'futura-medium';
+
+  font-display: swap;
+
+  src: url(/fonts/futura-medium.ttf) format('ttf');
+}
+
+@font-face {
+  font-family: 'futura-light';
+
+  font-display: swap;
+
+  src: url(/fonts/futura-light.ttf) format('ttf');
+}
+
 *, ::before, ::after {
   --tw-border-spacing-x: 0;
   --tw-border-spacing-y: 0;
@@ -727,8 +751,8 @@ video {
   width: 20ch;
 }
 
-.w-\[8ch\] {
-  width: 8ch;
+.w-\[9ch\] {
+  width: 9ch;
 }
 
 .w-full {
@@ -928,8 +952,16 @@ video {
   border-color: rgb(255 255 255 / 0.2);
 }
 
+.bg-black\/10 {
+  background-color: rgb(0 0 0 / 0.1);
+}
+
 .bg-black\/20 {
   background-color: rgb(0 0 0 / 0.2);
+}
+
+.bg-black\/40 {
+  background-color: rgb(0 0 0 / 0.4);
 }
 
 .bg-black\/50 {
@@ -953,18 +985,6 @@ video {
 .bg-zinc-900 {
   --tw-bg-opacity: 1;
   background-color: rgb(24 24 27 / var(--tw-bg-opacity));
-}
-
-.bg-black\/10 {
-  background-color: rgb(0 0 0 / 0.1);
-}
-
-.bg-neutral-800\/40 {
-  background-color: rgb(38 38 38 / 0.4);
-}
-
-.bg-black\/40 {
-  background-color: rgb(0 0 0 / 0.4);
 }
 
 .fill-green-700 {
@@ -1031,8 +1051,20 @@ video {
   text-align: center;
 }
 
+.font-futura-bold {
+  font-family: futura-bold;
+}
+
+.font-futura-light {
+  font-family: futura-light;
+}
+
 .font-mono {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+.font-futura-medium {
+  font-family: futura-medium;
 }
 
 .text-2xl {

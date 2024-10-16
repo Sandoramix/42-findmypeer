@@ -2,6 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
+
+@layer base {
+	@font-face {
+	  font-family: 'futura-bold';
+	  font-display: swap;
+	  src: url(/fonts/futura-bold.ttf) format('ttf');
+	}
+}
+
+
+@layer base {
+	@font-face {
+		font-family: 'futura-medium';
+		font-display: swap;
+		src: url(/fonts/futura-medium.ttf) format('ttf');
+	}
+}
+
+@layer base {
+	@font-face {
+		font-family: 'futura-light';
+		font-display: swap;
+		src: url(/fonts/futura-light.ttf) format('ttf');
+	}
+}
+
 :root{
 	--body-height: 100vh;
 	--body-height: 100dvh;

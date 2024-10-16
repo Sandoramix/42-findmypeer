@@ -16,6 +16,11 @@ module.exports = {
         xxxs:"0.4rem",
         xxxm:`.5rem`,
         xxs:"0.6rem",
+      },
+      fontFamily:{
+        "futura-bold": "futura-bold",
+        "futura-medium": "futura-medium",
+        "futura-light": "futura-light",
       }
     },
   },

@@ -67,7 +67,7 @@ function generateCluster(clusterConfig, parentNode, expanded = false, whiteBorde
 	const legend = document.createElement(`legend`);
 	legend.className = "w-[20ch]";
 	legend.setAttribute('align', 'center')
-	legend.innerHTML = `<a href="/cluster?id=${clusterConfig.id}"><div class="font-mono font-bold ${expanded ? `text-sm sm:text-3xl mb-8` : `text-sm`} flex-nowrap whitespace-nowrap flex justify-center items-center gap-2"><h3>Cluster ${clusterConfig.id}</h3><h3>|</h3><h3>${clusterConfig.name}</h3></div></a>`;
+	legend.innerHTML = `<a href="/cluster?id=${clusterConfig.id}"><div class="font-futura-bold font-bold ${expanded ? `text-sm sm:text-3xl mb-8` : `text-sm`} flex-nowrap whitespace-nowrap flex justify-center items-center gap-2"><h3>Cluster ${clusterConfig.id}</h3><h3>|</h3><h3>${clusterConfig.name}</h3></div></a>`;
 
 	const table = document.createElement(`table`);
 	table.setAttribute(`data-table-of-cluster`, clusterConfig.id);
@@ -131,7 +131,7 @@ function generateCluster(clusterConfig, parentNode, expanded = false, whiteBorde
 			const p = document.createElement(`p`);
 			p.textContent = `n/a`;
 			p.setAttribute(`data-username`, p.textContent);
-			p.className = `w-[8ch] text-ellipsis overflow-hidden text-white`;
+			p.className = `w-[9ch] text-ellipsis overflow-hidden text-white font-futura-light`;
 
 			if ((pc % 2 != 0 && !clusterConfig.isWeird) || (clusterConfig.isWeird && clusterConfig.rotations[row][pc - 1])) {
 				a.append(p);

@@ -2,20 +2,23 @@ import { Router } from "express";
 import FS from "fs";
 import { env } from "../env.js"
 import { fetchPeers } from "./peers.js";
-import { createCanvas, loadImage } from 'canvas';
+import { createCanvas, loadImage, registerFont } from 'canvas';
 import path from "path";
 
+registerFont("src/assets/fonts/futura-bold.ttf", {family: "futura-bold"})
 
 const __dirname = import.meta.dirname;
 
 var pcSvg = null;
 var pcSvgActive = null;
+var pcSvgOccupied = null;
 var backgroundImage = null;
 
 //const width = 2560;
 //const height = 1440;
 const width = 1920;
 const height = 1080;
+
 var canvas = createCanvas(width, height);
 
 
@@ -72,7 +75,7 @@ clusterRouter.get(`/:id/generate`, async (req, res) => {
 
 		// Fill background
 		ctx.drawImage(backgroundImage, 0, 0, width, height);
-		ctx.fillStyle = 'rgba(20, 20, 27, 0.75)';
+		ctx.fillStyle = 'rgba(17, 17, 22, 0.75)';
 		ctx.fillRect(0, 0, width, height);
 
 		const rowHeight = svgHeight * scale;
@@ -80,7 +83,7 @@ clusterRouter.get(`/:id/generate`, async (req, res) => {
 
 		// Draw row headers
 		ctx.fillStyle = '#fff';
-		ctx.font = `400 20px sans`;
+		ctx.font = `400 20px futura-bold`;
 		ctx.textAlign = 'center';
 		for (let row = 0; row < cluster.rows; row++) {
 			// Draw row numbers starting from the bottom (bottom-most row should be R1)
@@ -124,7 +127,7 @@ clusterRouter.get(`/:id/generate`, async (req, res) => {
 					user.position.row === row + 1 &&
 					user.position.pc === pcCounter
 				);
-				const svgToDraw = user ? pcSvgActive : pcSvg;
+				const svgToDraw = user ? pcSvgOccupied : pcSvgActive;
 
 
 				ctx.save();
@@ -152,10 +155,10 @@ clusterRouter.get(`/:id/generate`, async (req, res) => {
 
 				let userText = "n/a";
 				ctx.fillStyle = '#555';
-				ctx.font = `400 ${usernameFontSize}px arial`;
+				ctx.font = `400 ${usernameFontSize}px futura-bold`;
 				ctx.textAlign = "center";
 				if (user) {
-					ctx.font = `500 14px georgia`;
+					ctx.font = `500 14px futura-bold`;
 					ctx.fillStyle = "#fff";
 					userText = user.username;
 				}
@@ -180,9 +183,9 @@ clusterRouter.get(`/:id/generate`, async (req, res) => {
 
 		// Credits
 		ctx.fillStyle = "#ccc";
-		ctx.font = `400 16px georgia`;
+		ctx.font = `400 13px futura-bold`;
 		ctx.textAlign = 'left';
-		ctx.fillText("Made by @odudniak", padding / 2, height - 16);
+		ctx.fillText("Made by @odudniak", padding / 2, height - 13);
 
 		res.setHeader('Content-Type', 'image/png');
 		canvas.toBuffer((err, buf) => {
@@ -206,9 +209,11 @@ export async function loadClusterImages() {
 	const backgroundImagePath = path.join(__dirname, '../assets/wallpaper.jpg');
 	const pcSvgPath = path.join(__dirname, '../assets/pc.svg');
 	const pcSvgActivePath = path.join(__dirname, '../assets/pc-active.svg');
+	const pcSvgOccupiedPath = path.join(__dirname, '../assets/pc-occupied.svg');
 
 	pcSvg = await loadImage(pcSvgPath);
 	pcSvgActive = await loadImage(pcSvgActivePath);
+	pcSvgOccupied = await loadImage(pcSvgOccupiedPath);
 	backgroundImage = await loadImage(backgroundImagePath);
 }
 

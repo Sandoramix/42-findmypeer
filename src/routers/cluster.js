@@ -47,7 +47,7 @@ clusterRouter.get(`/:id/generate`, async (req, res) => {
 		const cluster = getClusterByIdOrThrow(req?.params?.id);
 		const users = await fetchPeers();
 
-		const padding = 30;
+		const padding = 100;
 		const rowPadding = 35;  // Padding between rows
 		const usernameFontSize = 16;  // Height for username text
 
@@ -158,7 +158,7 @@ clusterRouter.get(`/:id/generate`, async (req, res) => {
 				ctx.font = `400 ${usernameFontSize}px futura-bold`;
 				ctx.textAlign = "center";
 				if (user) {
-					ctx.font = `500 14px futura-bold`;
+					ctx.font = `500 16px futura-bold`;
 					ctx.fillStyle = "#fff";
 					userText = user.username;
 				}
@@ -183,7 +183,7 @@ clusterRouter.get(`/:id/generate`, async (req, res) => {
 
 		// Credits
 		ctx.fillStyle = "#ccc";
-		ctx.font = `400 13px futura-bold`;
+		ctx.font = `400 14px futura-bold`;
 		ctx.textAlign = 'left';
 		ctx.fillText("Made by @odudniak", padding / 2, height - 13);
 

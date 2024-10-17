@@ -49,7 +49,8 @@ clusterRouter.get(`/:id/generate`, async (req, res) => {
 
 		const padding = 100;
 		const rowPadding = 35;  // Padding between rows
-		const usernameFontSize = 16;  // Height for username text
+		const usernameFontSize = 15;  // Height for username text
+		const headerPadding = 15;  // Additional padding for headers
 
 		const availableWidth = width - 2 * padding;  // Apply padding only for canvas
 		const availableHeight = height - 2 * padding;
@@ -83,11 +84,11 @@ clusterRouter.get(`/:id/generate`, async (req, res) => {
 
 		// Draw row headers
 		ctx.fillStyle = '#fff';
-		ctx.font = `400 20px futura-bold`;
+		ctx.font = `24px futura-bold`;
 		ctx.textAlign = 'center';
 		for (let row = 0; row < cluster.rows; row++) {
 			// Draw row numbers starting from the bottom (bottom-most row should be R1)
-			ctx.fillText(`R${cluster.rows - row}`, padding / 2 + padding / 4, yOffset + row * (rowHeight + rowPadding) + (rowHeight / 2 + rowPadding / 2));
+			ctx.fillText(`R${cluster.rows - row}`, padding / 2 + padding / 4 - headerPadding, yOffset + row * (rowHeight + rowPadding) + (rowHeight / 2 + rowPadding / 2));
 		}
 
 		// Draw column headers
@@ -96,12 +97,10 @@ clusterRouter.get(`/:id/generate`, async (req, res) => {
 		for (let col = 0; col < cluster.columns; col++) {
 			const isSpacer = cluster.spacerColumns.includes(col + 1);
 			if (!isSpacer) {
-
 				ctx.fillStyle = '#fff';
-				ctx.fillText(`P${pcCounter}`, xOffset + col * columnWidth + columnWidth / 2, yOffset);
+				ctx.fillText(`P${pcCounter}`, xOffset + col * columnWidth + columnWidth / 2, yOffset - headerPadding);  // Subtract padding for column headers
 				pcCounter++;
 			} else {
-
 				ctx.fillStyle = '#666';
 				ctx.fillRect(xOffset + col * columnWidth + columnWidth / 2, yOffset, 1, cluster.rows * (rowHeight + rowPadding));
 			}
@@ -158,7 +157,7 @@ clusterRouter.get(`/:id/generate`, async (req, res) => {
 				ctx.font = `400 ${usernameFontSize}px futura-bold`;
 				ctx.textAlign = "center";
 				if (user) {
-					ctx.font = `500 16px futura-bold`;
+					ctx.font = `500 ${usernameFontSize}px futura-bold`;
 					ctx.fillStyle = "#fff";
 					userText = user.username;
 				}

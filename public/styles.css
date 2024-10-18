@@ -987,6 +987,26 @@ video {
   background-color: rgb(24 24 27 / var(--tw-bg-opacity));
 }
 
+.bg-neutral-400\/40 {
+  background-color: rgb(163 163 163 / 0.4);
+}
+
+.bg-neutral-400\/10 {
+  background-color: rgb(163 163 163 / 0.1);
+}
+
+.bg-neutral-800\/10 {
+  background-color: rgb(38 38 38 / 0.1);
+}
+
+.bg-neutral-700\/20 {
+  background-color: rgb(64 64 64 / 0.2);
+}
+
+.bg-zinc-700\/20 {
+  background-color: rgb(63 63 70 / 0.2);
+}
+
 .fill-green-700 {
   fill: #15803d;
 }
@@ -1059,12 +1079,12 @@ video {
   font-family: futura-light;
 }
 
-.font-mono {
-  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
-}
-
 .font-futura-medium {
   font-family: futura-medium;
+}
+
+.font-mono {
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
 }
 
 .text-2xl {

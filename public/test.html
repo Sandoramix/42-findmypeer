@@ -96,11 +96,11 @@
 
 			const svgWidth = 130, svgHeight = 91;
 
-			const pcSvg = await getImg("images/pc-active.svg", svgWidth, svgHeight);
-			const pcSvgActive = await getImg("images/pc-occupied.svg", svgWidth, svgHeight);
+			const pcSvg = await getImg("assets/svg/pc-active.svg", svgWidth, svgHeight);
+			const pcSvgActive = await getImg("assets/svg/pc-occupied.svg", svgWidth, svgHeight);
 			// TODO work with cluster.pcColors
 
-			const bgImg = await getImg("images/wallpaper.jpg", width, height);
+			const bgImg = await getImg("assets/img/wallpaper.jpg", width, height);
 
 
 			const usersData = await getUsers();
@@ -188,7 +188,6 @@
 
 						if (user) {
 							color = cluster.pcColors.active.default;
-							console.log({ user, row, col, pcCounter });
 						}
 
 						ctx.save();
@@ -211,9 +210,6 @@
 						} else {
 							// Draw the non-rotated SVG
 							ctx.drawImage(svgToDraw, pcX, pcY, columnWidth, rowHeight);
-						}
-						if (user?.username == "odudniak") {
-							console.table({ pcX, pcY, columnWidth, rowHeight, row, col });
 						}
 
 						ctx.restore();

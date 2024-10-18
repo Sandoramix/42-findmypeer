@@ -16,7 +16,7 @@
  */
 function updateLoading(isLoading) {
 	setTimeout(() => {
-		LOADING_SPINNER.classList.toggle(`!hidden`, !isLoading);
+		LOADING_SPINNER?.classList?.toggle(`!hidden`, !isLoading);
 	}, 200);
 }
 

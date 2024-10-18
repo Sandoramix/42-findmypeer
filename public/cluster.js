@@ -8,14 +8,12 @@ if (!id) {
 
 function fetchPeers() {
 	// TODO REPLACE TO: document.location.origin
-	updateLoading(true);
 	fetch(`${document.location.origin}/api/peers`, { method: 'GET' })
 		.then(res => res.json())
 		.then(data => {
 			const { users, refreshAt } = data;
 			PEERS = users;
 
-			updateLoading(false);
 			updateRefetchTime(refreshAt);
 			updateCluster(true);
 			const now = Date.now();
@@ -25,14 +23,12 @@ function fetchPeers() {
 }
 
 function fetchClusters() {
-	updateLoading(true);
 	fetch(`${document.location.origin}/api/clusters/${id}`, { method: 'GET' })
 		.then(res => res.json())
 		.then(data => {
 			CLUSTERS = data ? [data] : [];
 			if (CLUSTERS.length == 0) {
 				showMessage("Cluster not found");
-				updateLoading(false);
 				return;
 			}
 			CLUSTER_TABLES = [];
@@ -44,7 +40,6 @@ function fetchClusters() {
 				return fetchClusters();
 			}
 			showMessage("Server is not reachable, try again later", true);
-			updateLoading(false);
 			return;
 		});
 }

@@ -205,24 +205,16 @@ clusterRouter.get(`/:id/generate`, async (req, res) => {
 // UTILS ----------------------------------------------------------------------
 
 export async function loadClusterImages() {
-	const backgroundImagePath = path.join(__dirname, '../assets/wallpaper.jpg');
-	const pcSvgPath = path.join(__dirname, '../assets/pc.svg');
-	const pcSvgActivePath = path.join(__dirname, '../assets/pc-active.svg');
-	const pcSvgOccupiedPath = path.join(__dirname, '../assets/pc-occupied.svg');
+	const backgroundImagePath = path.join(__dirname, '../assets/img/wallpaper.jpg');
+	const pcSvgPath = path.join(__dirname, '../assets/svg/pc.svg');
+	const pcSvgActivePath = path.join(__dirname, '../assets/svg/pc-active.svg');
+	const pcSvgOccupiedPath = path.join(__dirname, '../assets/svg/pc-occupied.svg');
 
 	pcSvg = await loadImage(pcSvgPath);
 	pcSvgActive = await loadImage(pcSvgActivePath);
 	pcSvgOccupied = await loadImage(pcSvgOccupiedPath);
 	backgroundImage = await loadImage(backgroundImagePath);
 }
-
-async function waitTillImageIsLoaded(img) {
-	return new Promise((resolve, reject) => {
-		img.onload = async () => {
-			resolve(true);
-		};
-	});
-};
 
 function getClusterByIdOrThrow(rawId) {
 	if (isNaN(parseInt(rawId)))

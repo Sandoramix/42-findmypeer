@@ -1,11 +1,10 @@
-import { craftBackendQuery, padNumber } from './utils.js'
+
 import { env } from "./env.js"
 
 import FS from "fs";
 import EXPRESS from "express";
 import CORS from "cors";
 import HTTP from "http";
-import HTTPS from "https";
 import { clusterRouter, loadClusterImages } from './routers/cluster.js';
 import { peersRouter } from './routers/peers.js';
 
@@ -22,6 +21,7 @@ app.use("/api/clusters", clusterRouter);
 
 app.use("/api/peers", peersRouter);
 
+app.use("/assets", EXPRESS.static(`src/assets`));
 app.use(EXPRESS.static(`public`));
 
 FS.readdirSync(`public`).forEach((file) => {
@@ -39,7 +39,5 @@ function listenServer(server, port, https = false) {
 }
 
 const httpServer = HTTP.createServer(app);
-const httpsServer = HTTPS.createServer({ key: env.PRIVATE_KEY_FILE, cert: env.CERTIFICATE_FILE }, app);
 
 listenServer(httpServer, env.HTTP_PORT, false);
-listenServer(httpsServer, env.HTTPS_PORT, true);

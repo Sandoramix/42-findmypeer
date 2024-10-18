@@ -1,17 +1,12 @@
 
-import * as FS from "fs";
-import * as DOTENV from "dotenv";
+import { config } from "dotenv";
 import { exit } from "process";
 
-DOTENV.config();
+config();
 const penv = process.env;
 
 export const env = {
-	PRIVATE_KEY_FILE: FS.readFileSync(penv['PRIVATE_KEY_FILE'], 'utf8'),
-	CERTIFICATE_FILE: FS.readFileSync(penv['CERTIFICATE_FILE'], 'utf8'),
-
 	HTTP_PORT: +penv['HTTP_PORT'],
-	HTTPS_PORT: +penv['HTTPS_PORT'],
 
 	API_REFRESH_SECONDS: +penv['API_REFRESH_SECONDS'],
 

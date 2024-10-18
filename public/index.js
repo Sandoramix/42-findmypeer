@@ -32,8 +32,16 @@ function fetchPeers() {
 		});
 }
 
+function scrollToCluster(id) {
+	const cluster = document.querySelector(`[data-cluster="${id}"]`);
+	if (!cluster)
+		return;
+	cluster.scrollIntoView({ behavior: 'smooth' });
+}
+
 function fetchClusters() {
 	updateLoading(true);
+
 	fetch(`${document.location.origin}/api/clusters`, { method: 'GET' })
 		.then(res => res.json())
 		.then(data => {
@@ -45,6 +53,10 @@ function fetchClusters() {
 			}
 			CLUSTER_TABLES = [];
 			CLUSTERS.forEach(c => generateCluster(c, CLUSTERS_SECTION, false, false));
+			const selectedId = params.get(`id`);
+			if (selectedId) {
+				scrollToCluster(selectedId);
+			}
 			fetchPeers();
 		})
 		.catch(err => {

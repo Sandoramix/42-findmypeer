@@ -7,6 +7,8 @@ import path from "path";
 
 registerFont("src/assets/fonts/futura-bold.ttf", {family: "futura-bold"})
 
+registerFont("src/assets/fonts/futura-medium.ttf", {family: "futura-medium"})
+
 const __dirname = import.meta.dirname;
 
 var pcSvg = null;
@@ -152,12 +154,11 @@ clusterRouter.get(`/:id/generate`, async (req, res) => {
 				ctx.restore();
 				ctx.save();
 
-				let userText = "n/a";
+				let userText = "";
 				ctx.fillStyle = '#555';
-				ctx.font = `400 ${usernameFontSize}px futura-bold`;
+				ctx.font = `500 ${usernameFontSize}px futura-medium`;
 				ctx.textAlign = "center";
 				if (user) {
-					ctx.font = `500 ${usernameFontSize}px futura-bold`;
 					ctx.fillStyle = "#fff";
 					userText = user.username;
 				}

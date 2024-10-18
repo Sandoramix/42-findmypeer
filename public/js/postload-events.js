@@ -1,4 +1,5 @@
 const hash = location.hash.replace(/^#/, "");
+const params = new URLSearchParams(window.location.search);
 
 TABS_BUTTONS.forEach((el, idx) => {
 	const elAttr = el.getAttribute(`data-selectedtab`);

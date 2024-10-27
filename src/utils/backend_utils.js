@@ -1,5 +1,4 @@
-import { env } from "./env.js";
-
+import { env } from "../env.js";
 
 export function padNumber(n, padCount = 2) {
 	return n.toString().padStart(padCount, "0");

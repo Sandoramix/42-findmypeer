@@ -51,9 +51,11 @@
 		</dialog>
 		<main id="main"
 			class="relative flex flex-col items-center justify-start w-full overflow-x-hidden overflow-y-hidden xl:items-start xl:justify-center xl:overflow-y-auto xl:w-auto xl:flex-row grow">
-			<aside class="hidden min-w-[20ch] h-12 px-4 py-3 xl:sticky top-0 left-0 xl:flex shrink-1">
-				<h3 data-refetch-cnt class="hidden text-sm font-futura-medium xs:text-sm sm:text-base">Refresh in&nbsp;<span data-refetch-time>0</span>s</h3data-refetch->
+
+			<aside class="hidden w-40 h-full sticky top-0 left-0 shrink-0 px-4 py-3 xl:flex">
+				<div data-refetch-cnt class="hidden text-sm font-futura-medium xs:text-sm sm:text-base">Refresh in&nbsp;<span data-refetch-time>0</span>s</di>
 			</aside>
+
 			<section id="tab-table" style="display: none;" class="relative w-full px-4 pb-1 mx-auto text-xl sm:pb-3">
 				<table id="table" class="w-full max-w-6xl mx-auto overflow-y-auto border border-t-0 border-collapse border-white/20">
 					<thead>
@@ -70,18 +72,20 @@
 				</table>
 			</section>
 
-			<section style="display: none;" id="tab-clusters"
-				class="flex flex-col items-baseline w-full gap-3 py-1 text-center md:text-center text-xxxs sm:py-2 sm:w-full xs-sm:text-xxs md:text-sm xl:text-base grow xl:items-center">
+			<section style="display: none; scrollbar-gutter: stable;" id="tab-clusters"
+				class="flex flex-col items-baseline w-full gap-3 py-1 text-center md:text-center text-xxxs sm:py-2 sm:w-full xs-sm:text-xxs lg:text-sm xl:text-base grow xl:items-center ml-1.5">
 			</section>
 
 			<span class="grow shrink-1 xl:hidden"></span>
 			<footer
-				class="flex justify-between  xl:justify-center xl:flex-col w-full xl:items-center xl:sticky xl:top-0 xl:left-0 xl:grow xl:w-[20ch] h-10 items-center px-4 py-1 xl:py-2 border-t xl:border-none xl:px-0 shrink-0 border-neutral-700/40">
-				<h3 data-refetch-cnt class="flex items-center font-futura-light text-sm font-semibold xl:!hidden xs:text-sm sm:text-base whitespace-nowrap">Refresh in&nbsp;<span data-refetch-time>0</span>s
+				class="flex justify-between xl:shrink-0 xl:justify-center xl:flex-col w-full xl:items-center xl:sticky xl:top-0 xl:right-0 xl:grow xl:w-40 h-10 xl:h-full items-center px-4 py-1 xl:py-2 border-t xl:border-none xl:px-0 shrink-0 border-neutral-700/40">
+				<h3 data-refetch-cnt class="flex items-center font-futura-light text-sm font-semibold xl:!hidden xs:text-sm sm:text-base whitespace-nowrap">Refresh in&nbsp;<span
+						data-refetch-time>0</span>s
 				</h3>
+				<span class="hidden xl:block grow"></span>
 				<span class="overflow-hidden text-transparent select-none text-ellipsis">https://github.com/sandoramix/42-findmypeer</span>
-				<div class="flex items-end justify-center font-mono text-sm text-center 2xl:text-base xl:w-full flex-nowrap whitespace-nowrap">
-					<em>Made by <a href="https://profile.intra.42.fr/users/odudniak" target="_blank" referrerpolicy="noreferrer">@odudniak</a></em>
+				<div class="font-mono text-sm text-center 2xl:text-base xl:w-full flex-nowrap whitespace-nowrap">
+					Made by <a href="https://profile.intra.42.fr/users/odudniak" target="_blank" referrerpolicy="noreferrer">@odudniak</a>
 				</div>
 			</footer>
 		</main>
@@ -96,9 +100,11 @@
 					style="fill:#000;stroke-width:0;fill-opacity:1" transform="matrix(.98 0 0 .98 210 0)" />
 			</svg>
 		</template>
+
 		<!-- ?LOADING -->
 		<div class="fixed z-50 flex items-center justify-center w-screen overflow-hidden h-myscreen bg-black/10" id="loading" role="status">
-			<svg aria-hidden="true" style="width: 24px; height:24px;" class="!w-24 !h-24 text-neutral-800 animate-spin fill-green-700" viewBox="0 0 100 101" fill="none" xmlns="http://www.w3.org/2000/svg">
+			<svg aria-hidden="true" style="width: 24px; height:24px;" class="!w-24 !h-24 text-neutral-800 animate-spin fill-green-700" viewBox="0 0 100 101" fill="none"
+				xmlns="http://www.w3.org/2000/svg">
 				<path
 					d="M100 50.5908C100 78.2051 77.6142 100.591 50 100.591C22.3858 100.591 0 78.2051 0 50.5908C0 22.9766 22.3858 0.59082 50 0.59082C77.6142 0.59082 100 22.9766 100 50.5908ZM9.08144 50.5908C9.08144 73.1895 27.4013 91.5094 50 91.5094C72.5987 91.5094 90.9186 73.1895 90.9186 50.5908C90.9186 27.9921 72.5987 9.67226 50 9.67226C27.4013 9.67226 9.08144 27.9921 9.08144 50.5908Z"
 					fill="currentColor" />

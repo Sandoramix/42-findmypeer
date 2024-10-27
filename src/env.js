@@ -10,8 +10,8 @@ export const env = {
 
 	API_REFRESH_SECONDS: +penv['API_REFRESH_SECONDS'],
 
-	CLUSTERS_CONFIG_FILE: penv['CLUSTERS_CONFIG_FILE'],
 	BACKEND_PEERS_ENDPOINT: penv['BACKEND_PEERS_ENDPOINT'],
+	NODE_ENV: penv['NODE_ENV']?.toLowerCase() ?? 'development',
 };
 
 let errors = [];
@@ -25,4 +25,7 @@ Object.entries(env).forEach(([xName, x]) => {
 if (errors.length > 0) {
 	console.log(`Configuration file error: missing or invalid values of the following variables: ${errors.join(`, `)}`);
 	exit(1);
+}
+if (env.NODE_ENV !== 'development'){
+	console.debug = function(){};
 }

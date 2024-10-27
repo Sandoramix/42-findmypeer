@@ -1,9 +1,8 @@
 import { Router } from "express";
-import FS from "fs";
-import { env } from "../env.js"
 import { fetchPeers } from "./peers.js";
 import { createCanvas, loadImage, registerFont } from 'canvas';
 import path from "path";
+import { getClusterByIdOrThrow, getClusterConfigs } from "../utils/cluster_utils.js";
 
 registerFont("src/assets/fonts/futura-bold.ttf", {family: "futura-bold"})
 
@@ -215,26 +214,4 @@ export async function loadClusterImages() {
 	pcSvgActive = await loadImage(pcSvgActivePath);
 	pcSvgOccupied = await loadImage(pcSvgOccupiedPath);
 	backgroundImage = await loadImage(backgroundImagePath);
-}
-
-function getClusterByIdOrThrow(rawId) {
-	if (isNaN(parseInt(rawId)))
-		throw "Invalid id value provided";
-	const parsedId = parseInt(rawId);
-	const clusters = getClusterConfigs();
-	const found = clusters.find(cluster => cluster.id === parsedId);
-	if (!found)
-		throw "Cluster not found";
-	return found;
-}
-
-
-function getClusterConfigs() {
-	try {
-		const rawData = FS.readFileSync(env.CLUSTERS_CONFIG_FILE, 'utf8');
-		return JSON.parse(rawData);
-	} catch (_) {
-		console.error(_);
-		return null;
-	}
 }

@@ -1,0 +1,9 @@
+{
+	"apps": [
+		{
+			"name": "findmypeer",
+			"script": "src/app.js",
+			"watch": "."
+		}
+	]
+}

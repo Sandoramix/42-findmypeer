@@ -5,7 +5,7 @@
 	"main": "src/app.js",
 	"type": "module",
 	"scripts": {
-		"deploy": "pm2 startOrRestart src/app.js --name findmypeer --update-env",
+		"deploy": "pm2 startOrRestart pm2.config.json --name findmypeer --update-env",
 		"start": "node .",
 		"dev": "nodemon src/app.js",
 		"tw": "npx tailwindcss -i ./src/styles.css -o ./public/styles.css",

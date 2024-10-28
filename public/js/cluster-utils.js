@@ -67,7 +67,7 @@ function updateCluster(expanded = false) {
 function generateCluster(clusterConfig, parentNode, expanded = false, whiteBorder = false) {
 	const fieldset = document.createElement(`fieldset`);
 	fieldset.setAttribute(`data-cluster`, clusterConfig.id);
-	fieldset.className = `flex justify-center w-full max-h-screen p-1 ${expanded ? `px-16 py-8` : `max-w-7xl xl:border xl:rounded-lg border-t border-b`} shrink-0 ${whiteBorder ? ` border-neutral-200/50` : `border-neutral-950`} ${clusterConfig.isWeird ? `weird` : ``}`;
+	fieldset.className = `flex justify-center w-full max-h-screen p-1 ${expanded ? `px-16 py-8` : `max-w-7xl xl:border xl:border-black/30 border-t border-b bg-black/5`} shrink-0 ${whiteBorder ? ` border-neutral-200/50` : `border-neutral-950`} ${clusterConfig.isWeird ? `weird` : ``}`;
 
 	const legend = document.createElement(`legend`);
 	legend.className = expanded ? `w-96` : `w-60`;

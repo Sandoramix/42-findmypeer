@@ -985,6 +985,10 @@ video {
   background-color: rgb(0 0 0 / 0.2);
 }
 
+.bg-black\/5 {
+  background-color: rgb(0 0 0 / 0.05);
+}
+
 .bg-black\/50 {
   background-color: rgb(0 0 0 / 0.5);
 }
@@ -1010,10 +1014,6 @@ video {
 .bg-zinc-900 {
   --tw-bg-opacity: 1;
   background-color: rgb(24 24 27 / var(--tw-bg-opacity));
-}
-
-.bg-black\/5 {
-  background-color: rgb(0 0 0 / 0.05);
 }
 
 .fill-green-700 {
@@ -1534,18 +1534,6 @@ a:not(.disabled):hover {
     border-color: rgb(0 0 0 / 0.3);
   }
 
-  .xl\:bg-black\/50 {
-    background-color: rgb(0 0 0 / 0.5);
-  }
-
-  .xl\:bg-black\/20 {
-    background-color: rgb(0 0 0 / 0.2);
-  }
-
-  .xl\:bg-black\/5 {
-    background-color: rgb(0 0 0 / 0.05);
-  }
-
   .xl\:bg-black\/10 {
     background-color: rgb(0 0 0 / 0.1);
   }
@@ -1553,21 +1541,6 @@ a:not(.disabled):hover {
   .xl\:px-0 {
     padding-left: 0px;
     padding-right: 0px;
-  }
-
-  .xl\:py-2 {
-    padding-top: 0.5rem;
-    padding-bottom: 0.5rem;
-  }
-
-  .xl\:px-5 {
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-  }
-
-  .xl\:py-3 {
-    padding-top: 0.75rem;
-    padding-bottom: 0.75rem;
   }
 
   .xl\:px-3 {
@@ -1578,6 +1551,11 @@ a:not(.disabled):hover {
   .xl\:py-1 {
     padding-top: 0.25rem;
     padding-bottom: 0.25rem;
+  }
+
+  .xl\:py-2 {
+    padding-top: 0.5rem;
+    padding-bottom: 0.5rem;
   }
 
   .xl\:text-base {

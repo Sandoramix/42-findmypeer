@@ -77,7 +77,7 @@ clusterRouter.get(`/:id/generate`, async (req, res) => {
 
 		// Fill background
 		ctx.drawImage(backgroundImage, 0, 0, width, height);
-		ctx.fillStyle = 'rgba(17, 17, 22, 0.75)';
+		ctx.fillStyle = 'rgba(10, 10, 10, 0.35)';
 		ctx.fillRect(0, 0, width, height);
 
 		const rowHeight = svgHeight * scale;
@@ -85,7 +85,7 @@ clusterRouter.get(`/:id/generate`, async (req, res) => {
 
 		// Draw row headers
 		ctx.fillStyle = '#fff';
-		ctx.font = `24px futura-bold`;
+		ctx.font = `700 26px monospace`;
 		ctx.textAlign = 'center';
 		for (let row = 0; row < cluster.rows; row++) {
 			// Draw row numbers starting from the bottom (bottom-most row should be R1)
@@ -127,7 +127,7 @@ clusterRouter.get(`/:id/generate`, async (req, res) => {
 					user.position.row === row + 1 &&
 					user.position.pc === pcCounter
 				);
-				const svgToDraw = user ? pcSvgOccupied : pcSvgActive;
+				const svgToDraw = user ? pcSvgOccupied : pcSvg;
 
 
 				ctx.save();
@@ -174,7 +174,7 @@ clusterRouter.get(`/:id/generate`, async (req, res) => {
 		}
 
 		// Draw the cluster name above all PCs
-		const clusterFontSize = 50;
+		const clusterFontSize = 48;
 		ctx.fillStyle = '#ffffff';
 		ctx.font = `700 ${clusterFontSize}px arial`;
 		ctx.textAlign = 'center';
@@ -182,9 +182,9 @@ clusterRouter.get(`/:id/generate`, async (req, res) => {
 
 		// Credits
 		ctx.fillStyle = "#ccc";
-		ctx.font = `400 14px futura-bold`;
+		ctx.font = `400 16px monospace`;
 		ctx.textAlign = 'left';
-		ctx.fillText("Made by @odudniak", padding / 2, height - 13);
+		ctx.fillText("Made by @odudniak", 10, height - 10);
 
 		res.setHeader('Content-Type', 'image/png');
 		canvas.toBuffer((err, buf) => {

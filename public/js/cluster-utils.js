@@ -67,13 +67,13 @@ function updateCluster(expanded = false) {
 function generateCluster(clusterConfig, parentNode, expanded = false, whiteBorder = false) {
 	const fieldset = document.createElement(`fieldset`);
 	fieldset.setAttribute(`data-cluster`, clusterConfig.id);
-	fieldset.className = `flex justify-center w-full p-1 ${expanded ? `` : `max-w-7xl xl:border xl:rounded-lg border-t border-b`} shrink-0 ${whiteBorder ? ` border-neutral-200/50` : `border-neutral-950`} ${clusterConfig.isWeird ? `weird` : ``}`;
+	fieldset.className = `flex justify-center w-full max-h-screen p-1 ${expanded ? `px-16 py-8` : `max-w-7xl xl:border xl:rounded-lg border-t border-b`} shrink-0 ${whiteBorder ? ` border-neutral-200/50` : `border-neutral-950`} ${clusterConfig.isWeird ? `weird` : ``}`;
 
 	const legend = document.createElement(`legend`);
-	legend.className = "w-60";
+	legend.className = expanded ? `w-96` : `w-60`;
 	legend.setAttribute('align', 'center')
 	legend.innerHTML = `<a href="/cluster?id=${clusterConfig.id}" class="w-full flex justify-center items-center">
-		<div class="font-arial uppercase font-bold text-center ${expanded ? `text-sm sm:text-3xl mb-8` : `text-sm sm:text-base lg:text-lg`} grid grid-cols-7 grid-flow-row items-center w-full">
+		<div class="font-arial uppercase font-bold text-center ${expanded ? `text-sm sm:text-3xl` : `text-sm sm:text-base lg:text-lg`} grid grid-cols-7 grid-flow-row items-center w-full">
 			<h3 class="col-span-3 row-span-1">Cluster ${clusterConfig.id}</h3>
 			<h3 class="col-span-1 row-span-1">||</h3>
 			<h3 class="col-span-3 row-span-1">${clusterConfig.name}</h3>
@@ -115,7 +115,7 @@ function generateCluster(clusterConfig, parentNode, expanded = false, whiteBorde
 			if (i === 0 || clusterConfig.spacerColumns.includes(i)) {
 				const div = document.createElement(`div`);
 				if (i === 0) {
-					div.className = `w-3 h-3 xs:w-5 xs:h-5 font-extrabold text-center ${expanded ? `text-sm xs:text-base sm:text-3xl` : `text-xxs xs:text-sm sm:text-base`}`;
+					div.className = `w-3 h-3 xs:w-5 xs:h-5 font-extrabold text-center ${expanded ? `text-sm xs:text-base sm:text-3xl mx-2` : `text-xxs xs:text-sm sm:text-base`}`;
 					div.textContent = `R${row}`;
 				}
 				else {
@@ -125,7 +125,7 @@ function generateCluster(clusterConfig, parentNode, expanded = false, whiteBorde
 				tr.append(td);
 				continue;
 			}
-			td.className = `pc relative py-1 sm:py-2 ${row > 1 ? `border-b ${whiteBorder ? `border-neutral-300/40` : `border-neutral-950/50`}` : ""}`;
+			td.className = `pc relative ${expanded ? `` : `py-1 sm:py-2`} ${row > 1 ? `border-b ${whiteBorder ? `border-neutral-300/40` : `border-neutral-950/50`}` : ""}`;
 			const a = document.createElement(`a`);
 			a.className = `flex flex-col items-center justify-center w-full`;
 

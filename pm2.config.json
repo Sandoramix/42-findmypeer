@@ -2,8 +2,7 @@
 	"apps": [
 		{
 			"name": "findmypeer",
-			"script": "src/app.js",
-			"watch": "."
+			"script": "src/app.js"
 		}
 	]
 }

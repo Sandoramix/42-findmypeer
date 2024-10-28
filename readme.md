@@ -24,6 +24,7 @@ It makes a partial lookup on these informations:
 ### API Endpoints
 
 - **[GET]** `/api/peers/` : get information about all peers locations
+- **[GET]** `/api/peers/mock` : get fake generated peers data. It accepts `density` parameter which accepts range from `0.0` to `1.0`
 - **[GET]** `/api/clusters/` : get all clusters configurations
 - **[GET]** `/api/clusters/<:id>` : get the cluster's configuration
 - **[GET]** `/api/clusters/<cluster_id>/generate` : download the image of a single cluster's graphical representation.

@@ -184,7 +184,7 @@ clusterRouter.get(`/:id/generate`, async (req, res) => {
 		ctx.fillStyle = "#ccc";
 		ctx.font = `400 16px monospace`;
 		ctx.textAlign = 'left';
-		ctx.fillText("Made by @odudniak", 10, height - 10);
+		ctx.fillText("Made by odudniak", 10, height - 10);
 
 		res.setHeader('Content-Type', 'image/png');
 		canvas.toBuffer((err, buf) => {

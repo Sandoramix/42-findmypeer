@@ -2,7 +2,6 @@
 @tailwind components;
 @tailwind utilities;
 
-
 @layer base {
 	@font-face {
 	  font-family: 'futura-bold';
@@ -10,7 +9,6 @@
 	  src: url(/fonts/futura-bold.ttf) format('ttf');
 	}
 }
-
 
 @layer base {
 	@font-face {
@@ -40,7 +38,6 @@
 	scroll-behavior: smooth;
 }
 
-
 body{
 	height: var(--body-height);
 	color: whitesmoke;
@@ -67,11 +64,9 @@ body{
 	@apply rotate-180
 }
 
-
 .pc [data-svg="pc"] *{
 	@apply transition-colors duration-200
 }
-
 
 @media (max-width: 1280px){
 	#tab-table, #tab-clusters{

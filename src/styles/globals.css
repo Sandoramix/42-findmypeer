@@ -1,0 +1,45 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+  scroll-behavior: smooth;
+}
+
+@layer base {
+  @font-face {
+    font-family: "futura-bold";
+    font-display: swap;
+    src: url(/fonts/futura-bold.ttf) format("ttf");
+  }
+}
+
+@layer base {
+  @font-face {
+    font-family: "futura-medium";
+    font-display: swap;
+    src: url(/fonts/futura-medium.ttf) format("ttf");
+  }
+}
+
+@layer base {
+  @font-face {
+    font-family: "futura-light";
+    font-display: swap;
+    src: url(/fonts/futura-light.ttf) format("ttf");
+  }
+}
+
+body {
+  @apply text-white h-dvh w-dvw;
+}
+
+*::-webkit-scrollbar-thumb {
+  @apply rounded-sm bg-neutral-100;
+}
+*::-webkit-scrollbar {
+  @apply h-1.5 w-1.5 bg-neutral-950;
+}

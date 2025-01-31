@@ -1,0 +1,55 @@
+import { type ClusterConfig } from "./utils/types";
+
+export const clustersConfig: ClusterConfig[] = [
+	{
+		id: 1,
+		name: "Wakanda",
+		rows: 6,
+		columns: 13,
+		spacerColumns: [7],
+		pcColors: {
+			active: {
+				default: "#095800",
+				matched: "#b88d00",
+			},
+			inactive: {
+				default: "#242424",
+				matched: "#555",
+			},
+			empty: {
+				matched: "#333",
+			},
+		},
+		isWeird: true,
+		rotations: {
+			"1": [1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1],
+			"2": [1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1],
+			"3": [0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0],
+			"4": [1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1],
+			"5": [0, 1, 0, 1, 0, 1, 1, 0, 1, 0, 1, 0],
+			"6": [1, 0, 1, 0, 1, 0, 0, 1, 0, 1, 0, 1],
+		},
+	},
+	{
+		id: 2,
+		name: "Nidavellir",
+		rows: 6,
+		columns: 15,
+		spacerColumns: [4, 10],
+		pcColors: {
+			active: {
+				default: "#095800",
+				matched: "#b88d00",
+			},
+			inactive: {
+				default: "#242424",
+				matched: "#555",
+			},
+			empty: {
+				matched: "#333",
+			},
+		},
+		isWeird: false,
+		rotations: null,
+	},
+];

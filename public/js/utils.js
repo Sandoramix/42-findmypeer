@@ -67,6 +67,9 @@ function isSearchValueIncluded(string) {
  * @return {...UserRecord | null} userRecord or `null` if not found.
  */
 function findUserByPosition(cluster, row, pc) {
+	if (!PEERS){
+		return null;
+	}
 	for (let u of PEERS) {
 		const pos = u.position;
 		if (pos.cluster === cluster && pos.row === row && pos.pc === pc)

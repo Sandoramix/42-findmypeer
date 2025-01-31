@@ -35,6 +35,7 @@ It makes a partial lookup on these informations:
 If you want to test this application you'll simply need to:
 
 - Rename [`.env.example`](.env.example) which contains everything you need into `.env` and modify it to your needs.
+  - If you don't have a backend which returns the peers list, you can use `/api/peers/mock` endpoint for test purposes (e.g. http://localhost:9001/api/peers/mock?density=0.5
 - Configure the clusters inside [`clusters.json`](src/clusters.json) file
 - Install npm packages with:
 

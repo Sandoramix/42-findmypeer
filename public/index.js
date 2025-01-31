@@ -16,9 +16,16 @@ FORM.addEventListener(`submit`, (ev) => {
 
 function fetchPeers() {
 	// TODO REPLACE TO: document.location.origin
+
+	// TODO: make the retry mechanism more robust and universal (usable for other requests)
 	updateLoading(true);
 	fetch(`${document.location.origin}/api/peers`, { method: 'GET' })
-		.then(res => res.json())
+		.then(res => {
+			if (!res.ok){
+				throw new Error(`Server is not reachable, will retry in a few seconds`);
+			}
+			return res.json();
+		})
 		.then(data => {
 			const { users, refreshAt } = data;
 			PEERS = users;
@@ -29,6 +36,20 @@ function fetchPeers() {
 			const now = Date.now();
 			const nowD = new Date();
 			setTimeout(fetchPeers, refreshAt - now >= 0 ? refreshAt - now : (1000 * 60) - (nowD.getSeconds() * 1000));
+
+			dialog.close();
+			dialog.classList.toggle(`!flex`, false);
+		})
+		.catch(err=>{
+			showMessage("Request failed, will retry in a few seconds", true);
+			updateLoading(false);
+			const minRetrySeconds = 5, maxRetrySeconds = 10;
+			const retrySeconds = Math.floor(Math.random() * maxRetrySeconds) + minRetrySeconds;
+			let newRefreshAt = Date.now() + (1000 * retrySeconds);
+			updateRefetchTime(newRefreshAt);
+			setTimeout(()=>{
+				fetchPeers();
+			}, retrySeconds * 1000);
 		});
 }
 

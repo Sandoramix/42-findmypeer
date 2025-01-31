@@ -4,7 +4,7 @@ const CLUSTERS_SECTION = document.querySelector(`#tab-clusters`);
 var CLUSTER_TABLES = undefined;
 
 function updateCluster(expanded = false) {
-	if (!CLUSTERS)
+	if (!CLUSTERS || !PEERS)
 		return;
 
 	CLUSTER_TABLES.forEach((cluster, clusterIdx) => {

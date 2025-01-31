@@ -6,10 +6,10 @@ const TABLE = document.getElementById(`table`);
 function updateTable() {
 	TABLE.classList.toggle(`!hidden`, !CLUSTERS || CLUSTERS.length == 0);
 
-	if (!CLUSTERS)
+	if (!CLUSTERS || !PEERS)
 		return;
 	const search = SEARCH_INPUT.value.toLowerCase();
-	const filtered = PEERS.filter(user => {
+	const filtered = PEERS?.filter(user => {
 		const cluster = findClusterConfigById(user.position.cluster);
 		if (!cluster)
 			return false;
@@ -23,7 +23,7 @@ function updateTable() {
 	}
 
 
-	filtered.forEach(u => {
+	filtered?.forEach(u => {
 		const clusterConfig = findClusterConfigById(u.position.cluster);
 		if (!clusterConfig)
 			return;

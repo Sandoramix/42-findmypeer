@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { clustersConfig } from "~/config";
+import { env } from "~/env";
 
 import { createTRPCRouter, publicProcedure } from "~/server/api/trpc";
 import { type PeerDTO } from "~/utils/types";
@@ -58,6 +59,28 @@ export function getMockPeers(density = 0.7) {
 	return peers;
 };
 
+function getPeersResponse(peers: PeerDTO[]) {
+	const refreshSeconds = env.NEXT_PUBLIC_API_REFRESH_SECONDS ?? 5;
+	const nowD = new Date();
+	const nowTms = Date.now() - nowD.getMilliseconds();
+	const seconds = nowD.getSeconds();
+
+	const calc = nowTms - (seconds % refreshSeconds != 0 ? seconds * 1000 : 0) + (refreshSeconds * 1000);
+
+	const mappedPeers = peers.map(p => {
+		const cluster = clustersConfig.find(c => c.id == p.position.cluster);
+		return {
+			...p,
+			clusterName: cluster?.name ?? "n/a",
+		};
+	});
+
+	return {
+		peers: mappedPeers,
+		refreshAt: seconds > refreshSeconds / 100 * 90 ? calc + (refreshSeconds * 1000) : calc
+	};
+}
+
 export const peersRouter = createTRPCRouter({
 	hello: publicProcedure
 		.input(z.object({ text: z.string() }))
@@ -69,10 +92,10 @@ export const peersRouter = createTRPCRouter({
 	mockPeers: publicProcedure
 		.input(z.object({ density: z.number().min(0).max(1).optional() }))
 		.query(({ input }) => {
-			return getMockPeers(input.density);
+			return getPeersResponse(getMockPeers(input.density));
 		}),
 	fetchedPeers: publicProcedure
 		.query(({ ctx }) => {
-			return getMockPeers(0.7);
+			return getPeersResponse(getMockPeers(0.7));
 		}),
 });
